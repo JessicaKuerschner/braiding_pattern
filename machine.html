@@ -145,20 +145,76 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+
             .content-wrapper {
-                padding: 80px 20px 40px 20px;
+                padding: 80px 15px 40px 15px;
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
             }
 
             .machine-title h1 {
-                font-size: 2.5em;
+                font-size: 2em;
+                word-wrap: break-word;
+            }
+
+            .top-nav, .process-nav {
+                top: 15px;
+            }
+
+            .nav-link {
+                font-size: 0.8em;
+            }
+
+            .top-nav {
+                right: 15px;
+            }
+
+            .process-nav {
+                left: 15px;
             }
 
             table {
-                font-size: 0.75em;
+                font-size: 0.6em;
+                display: table;
+                width: 100%;
             }
 
             th, td {
-                padding: 8px;
+                padding: 6px 4px;
+                word-wrap: break-word;
+                white-space: normal;
+                vertical-align: top;
+                line-height: 1.4;
+            }
+
+            th {
+                font-size: 0.9em;
+            }
+
+            img {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            div[style*="flex: 0 0 280px"] {
+                flex: 0 0 calc(50% - 10px) !important;
+                max-width: calc(50% - 10px);
+            }
+
+            div[style*="display: flex"][style*="gap: 20px"] {
+                gap: 10px !important;
+            }
+
+            p, ul, li {
+                font-size: 0.85em;
+            }
+
+            h3 {
+                font-size: 1.1em;
             }
         }
     </style>
@@ -177,12 +233,12 @@
         <div class="content-section">
             <p>Our project began with a desire to think about the future of industrial production. What once was a place of connection, where skilled artisans worked closely together to create handcrafted goods, now evolved into workers being replaceable parts in industrial systems, not seen for the human qualities are more and more isolated from each other.</p>
             
-            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px; max-width: 350px;">
+            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center;">
+                <div style="flex: 0 0 280px;">
                     <img src="images/papermaking.jpg" alt="Paper Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Paper Making</p>
                 </div>
-                <div style="flex: 1; min-width: 200px; max-width: 350px;">
+                <div style="flex: 0 0 280px;">
                     <img src="images/shoemakers.jpg" alt="Shoemakers" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Shoemakers</p>
                 </div>
@@ -191,16 +247,16 @@
             <h3>Why Braiding?</h3>
             <p>Even though in the past people were doing crafts together in the same space. Rope making traditionally was a form where several people simultaneously had to work on one rope together.</p>
             
-            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center;">
+                <div style="flex: 0 0 280px;">
                     <img src="images/weaving.jpg" alt="Weaving" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Weaving</p>
                 </div>
-                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                <div style="flex: 0 0 280px;">
                     <img src="images/ropemaking.jpg" alt="Rope Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Rope Making</p>
                 </div>
-                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                <div style="flex: 0 0 280px;">
                     <img src="images/spinning.jpg" alt="Spinning" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Spinning</p>
                 </div>
