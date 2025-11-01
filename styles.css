@@ -1123,13 +1123,26 @@ header h1 {
     }
     
     .sidebar-left {
-        width: 0;
-        padding: 0;
-        overflow: hidden;
+        width: 40px;
+        padding: 5px;
+        overflow: visible;
     }
     
     .sidebar-right {
-        display: none;
+        width: 40px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .sidebar-right .nav-link {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    
+    .sidebar-right .nav-link a {
+        font-size: 0.8em;
     }
     
     .info-content h3 {
@@ -1155,8 +1168,9 @@ header h1 {
     }
     
     .main-content {
-        margin-left: 0;
-        width: 100vw;
+        margin-left: 40px;
+        margin-right: 40px;
+        width: calc(100vw - 80px);
         padding: 10px;
     }
     
