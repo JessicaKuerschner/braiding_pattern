@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Documentation - Marion & Jess</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar sidebar-left">
+        <div class="info-panel" id="info-panel">
+            <div class="info-content" id="info-content">
+                <h3>Select a circle</h3>
+                <p>Click on any pink circle on the video to learn more about that element.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <header class="reveal-element" data-element="title">
+                <h1><a href="machine.html" class="machine-title-link">Our friend, 
+                    <br>MACHINE</a></h1>
+            </header>
+
+            <main id="content-container">
+                <!-- Week content moved to index2.html -->
+            </main>
+
+            <div class="machine-section revealed" data-element="machine" style="opacity: 1; transform: translateY(0);">
+                <!-- Horizontal Collaborative Machine Interface -->
+                <div class="machine-container" style="border: 3px solid red; min-height: 500px;">
+                    <!-- Left Controls -->
+                    <div class="controls-left" style="border: 2px solid blue;">
+                        <div class="control-panel">
+                            <h3>Digital Influence</h3>
+                            <div class="control-group digital-influence">
+                                <label>Speed Nudge <span class="influence-indicator">↗</span></label>
+                                <input type="range" id="speed" min="-3" max="3" value="0" step="0.5" oninput="updatePattern()">
+                                <span class="value" id="speed-value">0 RPM</span>
+                                <small>Influence physical pedal tempo</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Braiding Tension <span class="influence-indicator">⚡</span></label>
+                                <input type="range" id="colorDensity" min="0" max="100" value="50" oninput="updatePattern()">
+                                <span class="value" id="colorDensity-value">50%</span>
+                                <small>Spindle tension strength</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Content -->
+                    <div class="machine-center" style="border: 3px solid green; background: rgba(255,255,0,0.2);">
+                        <div class="system-status">
+                            <span class="machine-state" id="machine-state">● Machine Active</span>
+                            <span class="physical-users" id="physical-users">2 makers at installation</span>
+                        </div>
+                        
+                        <div class="pattern-generator" id="pattern-generator">
+                            <h4>Pattern Generator</h4>
+                            <canvas id="pattern-canvas" style="border: 2px solid purple; background: white;"></canvas>
+                        </div>
+                        
+                        <div class="machine-placeholder">
+                            <h4>Machine Video</h4>
+                            <video autoplay muted loop style="border: 2px solid orange;">
+                                <source src="LowSun.mp4" type="video/mp4">
+                                <source src="LowSun.mov" type="video/quicktime">
+                                <source src="LowSun.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="circle-overlay">
+                                <div class="circle circle1" data-info="fiber-analysis" onclick="showInfo('fiber-analysis')"></div>
+                                <div class="circle circle2" data-info="tension-control" onclick="showInfo('tension-control')"></div>
+                                <div class="circle circle3" data-info="pattern-mechanism" onclick="showInfo('pattern-mechanism')"></div>
+                                <div class="circle circle4" data-info="speed-regulation" onclick="showInfo('speed-regulation')"></div>
+                                <div class="circle circle5" data-info="material-feed" onclick="showInfo('material-feed')"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Controls -->
+                    <div class="controls-right" style="border: 2px solid blue;">
+                        <div class="control-panel">
+                            <h3>Material & Status</h3>
+                            <div class="control-group digital-influence">
+                                <label>Color Options <span class="influence-indicator">🎨</span></label>
+                                <div class="color-options">
+                                    <div class="color-swatch" data-color="#8B4513" style="background-color: #8B4513;" onclick="selectColor('#8B4513')"></div>
+                                    <div class="color-swatch" data-color="#F26E69" style="background-color: #F26E69;" onclick="selectColor('#F26E69')"></div>
+                                    <div class="color-swatch" data-color="#E818F2" style="background-color: #E818F2;" onclick="selectColor('#E818F2')"></div>
+                                    <div class="color-swatch" data-color="#4CAF50" style="background-color: #4CAF50;" onclick="selectColor('#4CAF50')"></div>
+                                    <div class="color-swatch" data-color="#2196F3" style="background-color: #2196F3;" onclick="selectColor('#2196F3')"></div>
+                                    <div class="color-swatch selected" data-color="#FF9800" style="background-color: #FF9800;" onclick="selectColor('#FF9800')"></div>
+                                </div>
+                                <small>Select color preference</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Preview Yarn <span class="influence-indicator">🧶</span></label>
+                                <select id="yarnMaterial" onchange="updateYarnPreview()">
+                                    <option value="cotton-thin">Cotton - Thin</option>
+                                    <option value="cotton-medium" selected>Cotton - Medium</option>
+                                    <option value="cotton-thick">Cotton - Thick</option>
+                                    <option value="wool-thin">Wool - Thin</option>
+                                    <option value="wool-medium">Wool - Medium</option>
+                                    <option value="wool-thick">Wool - Thick</option>
+                                    <option value="hemp-medium">Hemp - Medium</option>
+                                    <option value="silk-thin">Silk - Thin</option>
+                                </select>
+                                <small>Material and thickness</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Place Needles <span class="influence-indicator">📍</span></label>
+                                <div class="needle-options">
+                                    <button class="needle-btn active" data-needle="1" onclick="selectNeedle(1)">1</button>
+                                    <button class="needle-btn" data-needle="2" onclick="selectNeedle(2)">2</button>
+                                    <button class="needle-btn" data-needle="3" onclick="selectNeedle(3)">3</button>
+                                    <button class="needle-btn" data-needle="4" onclick="selectNeedle(4)">4</button>
+                                </div>
+                                <small>Needle configuration</small>
+                            </div>
+                            <div class="live-feedback">
+                                <div class="sensor-data">
+                                    <span class="sensor" id="actual-speed">Physical Speed: <strong>4.2 RPM</strong></span>
+                                    <span class="sensor" id="tension">Tension: <strong>Medium</strong></span>
+                                    <span class="sensor" id="color-applied">Color Applied: <strong>Yes</strong></span>
+                                </div>
+                            </div>
+                            <div class="collaboration-status">
+                                <div class="interaction-cycle">
+                                    <span class="cycle-phase" id="cycle-phase">Adaptation Phase</span>
+                                    <div class="cycle-progress">
+                                        <div class="progress-bar" id="progress-bar"></div>
+                                    </div>
+                                </div>
+                                <span class="users-online" id="users-online">3 digital participants</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar sidebar-right">
+        <div class="nav-link">
+            <a href="index2.html">PROCESS</a>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let sharedVariables = {
+            digitalSpeedNudge: 0,
+            physicalBaseSpeed: 4.2,
+            colorIntensity: 50,
+            suggestedMaterial: '#FF9800',
+            actualMaterial: '#FF9800',
+            yarnType: 'cotton-medium',
+            selectedNeedle: 1,
+            interactionCycle: 'adaptation'
+        };
+        
+        let sensorData = {
+            speed: 4.2,
+            tension: 'medium',
+            colorApplied: true
+        };
+        
+        let canvas, ctx;
+        
+        function initPatternGenerator() {
+            console.log('Initializing pattern generator...');
+            canvas = document.getElementById('pattern-canvas');
+            if (!canvas) {
+                console.error('Canvas element not found!');
+                return;
+            }
+            
+            ctx = canvas.getContext('2d');
+            if (!ctx) {
+                console.error('Canvas context not available!');
+                return;
+            }
+            
+            canvas.width = 500;
+            canvas.height = 120;
+            canvas.style.width = '100%';
+            canvas.style.height = '120px';
+            
+            console.log('Canvas initialized:', canvas.width, 'x', canvas.height);
+            generatePattern();
+        }
+        
+        function generatePattern() {
+            if (!canvas || !ctx) {
+                console.error('Canvas or context not available');
+                return;
+            }
+            
+            console.log('Generating pattern...');
+            
+            // Clear canvas
+            ctx.fillStyle = '#f5f5f5';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Get current settings
+            const selectedColor = sharedVariables.suggestedMaterial;
+            const yarnType = sharedVariables.yarnType;
+            const needleConfig = sharedVariables.selectedNeedle;
+            const materialType = yarnType.split('-')[0];
+            const totalSpindles = 6 + (needleConfig * 2);
+            
+            // Draw info text
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText(`Material: ${materialType}`, 10, 20);
+            ctx.fillText(`Spindles: ${totalSpindles}`, 10, 35);
+            ctx.fillText(`Speed: ${sensorData.speed} RPM`, 10, 50);
+            
+            // Draw simple pattern
+            ctx.fillStyle = selectedColor;
+            const rowHeight = 8;
+            const totalRows = 8;
+            
+            for (let row = 0; row < totalRows; row++) {
+                const y = 70 + (row * rowHeight);
+                for (let spindle = 0; spindle < totalSpindles; spindle++) {
+                    const x = 100 + (spindle * 30);
+                    const offset = Math.sin(row * 0.5 + spindle * 0.8) * 10;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x + offset, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        function updatePattern() {
+            const speedNudge = parseFloat(document.getElementById('speed').value);
+            const colorDensity = parseFloat(document.getElementById('colorDensity').value);
+            
+            sharedVariables.digitalSpeedNudge = speedNudge;
+            sharedVariables.colorIntensity = colorDensity;
+            
+            document.getElementById('speed-value').textContent = (speedNudge >= 0 ? '+' : '') + speedNudge + ' RPM';
+            document.getElementById('colorDensity-value').textContent = colorDensity + '%';
+            
+            generatePattern();
+        }
+        
+        function selectColor(color) {
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.classList.remove('selected');
+            });
+            document.querySelector(`[data-color="${color}"]`).classList.add('selected');
+            
+            sharedVariables.suggestedMaterial = color;
+            sharedVariables.actualMaterial = color;
+            generatePattern();
+        }
+        
+        function updateYarnPreview() {
+            const yarnSelect = document.getElementById('yarnMaterial');
+            sharedVariables.yarnType = yarnSelect.value;
+            generatePattern();
+        }
+        
+        function selectNeedle(needleNumber) {
+            document.querySelectorAll('.needle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-needle="${needleNumber}"]`).classList.add('active');
+            
+            sharedVariables.selectedNeedle = needleNumber;
+            generatePattern();
+        }
+        
+        function showInfo(infoType) {
+            const infoContent = document.getElementById('info-content');
+            const infoData = {
+                'fiber-analysis': {
+                    title: 'Fiber Analysis',
+                    content: 'This component analyzes the quality and tension of individual fibers before braiding.'
+                },
+                'tension-control': {
+                    title: 'Tension Control', 
+                    content: 'The tension control system maintains optimal fiber tension throughout the braiding process.'
+                },
+                'pattern-mechanism': {
+                    title: 'Pattern Mechanism',
+                    content: 'This mechanical system controls the intricate braiding patterns.'
+                },
+                'speed-regulation': {
+                    title: 'Speed Regulation',
+                    content: 'The speed regulation unit controls the braiding velocity based on material type.'
+                },
+                'material-feed': {
+                    title: 'Material Feed',
+                    content: 'The material feed system manages the continuous supply of fibers.'
+                }
+            };
+            
+            const info = infoData[infoType];
+            if (info) {
+                infoContent.innerHTML = `<h3>${info.title}</h3><p>${info.content}</p>`;
+            }
+        }
+        
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            setTimeout(initPatternGenerator, 100);
+        });
+        
+        // Backup initialization
+        if (document.readyState !== 'loading') {
+            console.log('DOM already loaded...');
+            setTimeout(initPatternGenerator, 100);
+        }
+    </script>
+</body>
+</html>

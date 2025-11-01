@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our friend, MACHINE - Interactive Mindmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mindmap.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="index.html" class="nav-link">MACHINE</a>
+    </nav>
+    
+    <nav class="process-nav">
+        <span class="process-link">PROCESS</span>
+    </nav>
+    
+    <!-- Side Week Navigation -->
+    <div class="side-week-nav">
+        <div class="week-item" data-week="week1">
+            <span class="week-name">SETTING UP</span>
+        </div>
+        <div class="week-item" data-week="week2">
+            <span class="week-name">BRAIDING MACHINE & EXPERIMENTS</span>
+        </div>
+        <div class="week-item" data-week="week3">
+            <span class="week-name">MATERIAL TESTING & ANALYSIS</span>
+        </div>
+        <div class="week-item" data-week="week4">
+            <span class="week-name">PATTERN DEVELOPMENT</span>
+        </div>
+        <div class="week-item" data-week="week5">
+            <span class="week-name">PROTOTYPE CREATION</span>
+        </div>
+        <div class="week-item" data-week="week6">
+            <span class="week-name">TESTING & REFINEMENT</span>
+        </div>
+        <div class="week-item" data-week="week7">
+            <span class="week-name">DOCUMENTATION & PRESENTATION</span>
+        </div>
+        <div class="week-item" data-week="week8">
+            <span class="week-name">FINAL INTEGRATION</span>
+        </div>
+    </div>
+    
+    <!-- Week Content Overlay -->
+    <div class="week-overlay" id="week-overlay">
+        <div class="overlay-content" id="overlay-content">
+            <div class="overlay-close" id="overlay-close">×</div>
+            <!-- Week content will be loaded here -->
+        </div>
+    </div>
+    
+    <div class="mindmap-container">
+
+        <!-- Week 1 Tools & Setup -->
+        <div class="node setup-node docs-node" data-node="docs" data-connects="central,abstract">
+            <div class="node-content">
+                <h3>Google Docs</h3>
+            </div>
+        </div>
+
+        <div class="node setup-node zotero-node" data-node="zotero" data-connects="central,reenchantment,community">
+            <div class="node-content">
+                <h3>Zotero</h3>
+            </div>
+        </div>
+
+        <div class="node setup-node figma-node" data-node="figma" data-connects="central,mindmap">
+            <div class="node-content">
+                <h3>Figma</h3>
+            </div>
+        </div>
+
+        <!-- Research Questions -->
+        <div class="node research-node marion-research-node" data-node="reenchantment" data-connects="zotero,rope,mechanism">
+            <div class="node-content">
+                <h3>Reenchantment</h3>
+            </div>
+        </div>
+
+        <div class="node research-node jess-research-node" data-node="community" data-connects="zotero,rope,textile">
+            <div class="node-content">
+                <h3>Community Power</h3>
+            </div>
+        </div>
+
+        <!-- Material Focus -->
+        <div class="node material-node rope-node" data-node="rope" data-connects="central,companies">
+            <div class="node-content">
+                <h3>Rope</h3>
+            </div>
+        </div>
+
+        <!-- Week 2 Making Activities -->
+        <div class="node making-node braiding-machine-node" data-node="mechanism" data-connects="reenchantment,motor,texmind">
+            <div class="node-content">
+                <h3>3D Printed Machine</h3>
+            </div>
+        </div>
+
+        <div class="node making-node textile-experiments-node" data-node="textile" data-connects="community,maypole">
+            <div class="node-content">
+                <h3>Textile Experiments</h3>
+            </div>
+        </div>
+
+        <div class="node making-node motor-node" data-node="motor" data-connects="mechanism">
+            <div class="node-content">
+                <h3>Motor from Emmaus</h3>
+            </div>
+        </div>
+
+        <!-- Software & Tools -->
+        <div class="node software-node texmind-node" data-node="texmind" data-connects="mechanism,automation">
+            <div class="node-content">
+                <h3>Texmind Software</h3>
+            </div>
+        </div>
+
+        <div class="node software-node herzog-node" data-node="automation" data-connects="texmind">
+            <div class="node-content">
+                <h3>Herzog System</h3>
+            </div>
+        </div>
+
+        <!-- Community Connections -->
+        <div class="node community-node maypole-node" data-node="maypole" data-connects="textile,gabriel">
+            <div class="node-content">
+                <h3>Maypole Tradition</h3>
+            </div>
+        </div>
+
+        <div class="node community-node gabriel-node" data-node="gabriel" data-connects="maypole">
+            <div class="node-content">
+                <h3>Gabriel Fontana</h3>
+            </div>
+        </div>
+
+        <div class="node community-node rope-companies-node" data-node="companies" data-connects="rope">
+            <div class="node-content">
+                <h3>Rope Companies</h3>
+            </div>
+        </div>
+
+        <!-- Research Outputs -->
+        <div class="node output-node mindmap-node" data-node="mindmap" data-connects="abstract,figma">
+            <div class="node-content">
+                <h3>Research Mindmap</h3>
+            </div>
+        </div>
+
+        <div class="node output-node abstract-node" data-node="abstract" data-connects="docs">
+            <div class="node-content">
+                <h3>Updated Abstract</h3>
+            </div>
+        </div>
+
+        <!-- Image Elements -->
+        <div class="image-element image-1">
+            <img src="images/week1collabpic.jpg" alt="Collaboration" class="mindmap-image">
+        </div>
+        
+        <div class="image-element image-2">
+            <img src="images/Week1MindmapPostits.jpeg" alt="Mindmap Postits" class="mindmap-image">
+        </div>
+        
+        <div class="image-element image-3">
+            <img src="images/IMG_0050.JPG" alt="3D Machine" class="mindmap-image">
+        </div>
+        
+        <div class="image-element image-4">
+            <img src="images/IMG_0133.JPG" alt="Textile Work" class="mindmap-image">
+        </div>
+        
+        <div class="image-element image-5">
+            <img src="images/IMG_0141.JPG" alt="Rope Material" class="mindmap-image">
+        </div>
+        
+        <div class="image-element image-6">
+            <img src="images/IMG_0148.JPG" alt="Documentation" class="mindmap-image">
+        </div>
+
+        <!-- Connection Lines -->
+        <svg class="connections" width="100%" height="100%">
+            <!-- Lines will be dynamically generated -->
+        </svg>
+
+
+    </div>
+
+    <script src="mindmap.js"></script>
+    <script>
+        // Mindmap dragging functionality
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let currentTranslateX = 0;
+        let currentTranslateY = 0;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const mindmapContainer = document.querySelector('.mindmap-container');
+            
+            // Mouse down to start dragging
+            mindmapContainer.addEventListener('mousedown', function(e) {
+                // Don't drag if clicking on a node
+                if (e.target.closest('.node')) return;
+                
+                isDragging = true;
+                dragStartX = e.clientX - currentTranslateX;
+                dragStartY = e.clientY - currentTranslateY;
+                mindmapContainer.classList.add('dragging');
+                e.preventDefault();
+            });
+            
+            // Mouse move to drag
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                
+                currentTranslateX = e.clientX - dragStartX;
+                currentTranslateY = e.clientY - dragStartY;
+                
+                mindmapContainer.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px)`;
+            });
+            
+            // Mouse up to stop dragging
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    mindmapContainer.classList.remove('dragging');
+                }
+            });
+            
+            // Touch events for mobile
+            mindmapContainer.addEventListener('touchstart', function(e) {
+                if (e.target.closest('.node')) return;
+                
+                isDragging = true;
+                const touch = e.touches[0];
+                dragStartX = touch.clientX - currentTranslateX;
+                dragStartY = touch.clientY - currentTranslateY;
+                mindmapContainer.classList.add('dragging');
+                e.preventDefault();
+            });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                
+                const touch = e.touches[0];
+                currentTranslateX = touch.clientX - dragStartX;
+                currentTranslateY = touch.clientY - dragStartY;
+                
+                mindmapContainer.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px)`;
+                e.preventDefault();
+            });
+            
+            document.addEventListener('touchend', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    mindmapContainer.classList.remove('dragging');
+                }
+            });
+        });
+        
+        // Week navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const weekItems = document.querySelectorAll('.week-item');
+            const overlay = document.getElementById('week-overlay');
+            const overlayContent = document.getElementById('overlay-content');
+            const overlayClose = document.getElementById('overlay-close');
+            
+            // Week content data
+            const weekContent = {
+                week1: {
+                    title: "WEEK 1: SETTING UP",
+                    content: `
+                        <h3>Initial Setup and Tool Configuration</h3>
+                        <p>This week focused on establishing the foundational tools and workspace for our graduation project collaboration.</p>
+                        
+                        <h4>Tools Set Up:</h4>
+                        <ul>
+                            <li><strong>Google Docs:</strong> Collaborative writing and documentation</li>
+                            <li><strong>Zotero:</strong> Research management and bibliography</li>
+                            <li><strong>Figma:</strong> Visual design and mindmapping</li>
+                        </ul>
+                        
+                        <h4>Research Foundation:</h4>
+                        <p>We began establishing our research questions around <strong>reenchantment</strong> (Marion's focus) and <strong>community power</strong> (Jess's focus), with rope as our central material exploration.</p>
+                    `
+                },
+                week2: {
+                    title: "WEEK 2: BRAIDING MACHINE & EXPERIMENTS",
+                    content: `
+                        <h3>Machine Development and Material Exploration</h3>
+                        <p>This week involved hands-on making and experimentation with both digital and physical tools.</p>
+                        
+                        <h4>Making Activities:</h4>
+                        <ul>
+                            <li><strong>3D Printed Machine:</strong> Development of braiding mechanism</li>
+                            <li><strong>Motor Integration:</strong> Sourced motor from Emmaus for automation</li>
+                            <li><strong>Textile Experiments:</strong> Initial material testing and pattern exploration</li>
+                        </ul>
+                        
+                        <h4>Software Integration:</h4>
+                        <p>We explored <strong>Texmind Software</strong> and the <strong>Herzog System</strong> for pattern generation and automation possibilities.</p>
+                    `
+                },
+                week3: {
+                    title: "WEEK 3: MATERIAL TESTING & ANALYSIS",
+                    content: `
+                        <h3>Deep Dive into Material Properties</h3>
+                        <p>Focused analysis of rope characteristics and their implications for both mechanical and conceptual work.</p>
+                        
+                        <h4>Material Research:</h4>
+                        <ul>
+                            <li>Rope company outreach and material sourcing</li>
+                            <li>Tensile strength and flexibility testing</li>
+                            <li>Cultural and historical context of rope in community practices</li>
+                        </ul>
+                    `
+                },
+                week4: {
+                    title: "WEEK 4: PATTERN DEVELOPMENT",
+                    content: `
+                        <h3>Systematic Pattern Creation</h3>
+                        <p>Development of repeatable patterns and documentation of making processes.</p>
+                        
+                        <h4>Pattern Work:</h4>
+                        <ul>
+                            <li>Braiding pattern documentation</li>
+                            <li>Variation testing and cataloging</li>
+                            <li>Integration with maypole traditions research</li>
+                        </ul>
+                    `
+                },
+                week5: {
+                    title: "WEEK 5: PROTOTYPE CREATION",
+                    content: `
+                        <h3>Working Prototype Development</h3>
+                        <p>Creation of functional prototypes incorporating both mechanical and community aspects.</p>
+                        
+                        <h4>Prototype Features:</h4>
+                        <ul>
+                            <li>Automated braiding mechanism</li>
+                            <li>Community interaction elements</li>
+                            <li>Documentation of making process</li>
+                        </ul>
+                    `
+                },
+                week6: {
+                    title: "WEEK 6: TESTING & REFINEMENT",
+                    content: `
+                        <h3>User Testing and System Refinement</h3>
+                        <p>Testing prototypes with community members and refining based on feedback.</p>
+                        
+                        <h4>Testing Areas:</h4>
+                        <ul>
+                            <li>Mechanical functionality and reliability</li>
+                            <li>User experience and accessibility</li>
+                            <li>Community engagement effectiveness</li>
+                        </ul>
+                    `
+                },
+                week7: {
+                    title: "WEEK 7: DOCUMENTATION & PRESENTATION",
+                    content: `
+                        <h3>Project Documentation and Presentation Preparation</h3>
+                        <p>Comprehensive documentation of process, outcomes, and learnings.</p>
+                        
+                        <h4>Documentation:</h4>
+                        <ul>
+                            <li>Process documentation and reflection</li>
+                            <li>Video documentation of making and community interaction</li>
+                            <li>Written analysis connecting theory and practice</li>
+                        </ul>
+                    `
+                },
+                week8: {
+                    title: "WEEK 8: FINAL INTEGRATION",
+                    content: `
+                        <h3>Project Integration and Conclusion</h3>
+                        <p>Final integration of all elements and preparation for graduation presentation.</p>
+                        
+                        <h4>Integration:</h4>
+                        <ul>
+                            <li>Final prototype refinements</li>
+                            <li>Presentation material preparation</li>
+                            <li>Reflection on collaboration and outcomes</li>
+                        </ul>
+                    `
+                }
+            };
+            
+            // Click to open overlay
+            weekItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const weekId = this.dataset.week;
+                    const content = weekContent[weekId];
+                    
+                    if (content) {
+                        overlayContent.innerHTML = `
+                            <h2>${content.title}</h2>
+                            ${content.content}
+                        `;
+                        overlay.classList.add('active');
+                    }
+                });
+            });
+            
+            // Close overlay
+            overlayClose.addEventListener('click', function() {
+                overlay.classList.remove('active');
+            });
+            
+            // Close overlay on background click
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+            
+            // Close overlay with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    overlay.classList.remove('active');
+                }
+            });
+            
+            // Node click functionality
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                node.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent dragging
+                    
+                    const nodeType = this.dataset.node;
+                    const weekInfo = getWeekForNode(nodeType);
+                    
+                    if (weekInfo) {
+                        showNodeWeek(weekInfo);
+                    }
+                });
+            });
+            
+            function getWeekForNode(nodeType) {
+                const nodeWeekMap = {
+                    'docs': { week: 1, title: 'WEEK 1', activity: 'Google Docs Setup' },
+                    'zotero': { week: 1, title: 'WEEK 1', activity: 'Zotero Research Management' },
+                    'figma': { week: 1, title: 'WEEK 1', activity: 'Figma Design Tools' },
+                    'reenchantment': { week: 1, title: 'WEEK 1', activity: 'Research Question: Reenchantment' },
+                    'community': { week: 1, title: 'WEEK 1', activity: 'Research Question: Community Power' },
+                    'rope': { week: 1, title: 'WEEK 1', activity: 'Material Focus: Rope' },
+                    'mechanism': { week: 2, title: 'WEEK 2', activity: '3D Printed Braiding Machine' },
+                    'textile': { week: 2, title: 'WEEK 2', activity: 'Textile Experiments' },
+                    'motor': { week: 2, title: 'WEEK 2', activity: 'Motor Integration from Emmaus' },
+                    'texmind': { week: 2, title: 'WEEK 2', activity: 'Texmind Software Exploration' },
+                    'automation': { week: 2, title: 'WEEK 2', activity: 'Herzog Automation System' },
+                    'maypole': { week: 2, title: 'WEEK 2', activity: 'Maypole Tradition Research' },
+                    'gabriel': { week: 2, title: 'WEEK 2', activity: 'Gabriel Fontana Collaboration' },
+                    'companies': { week: 3, title: 'WEEK 3', activity: 'Rope Companies Research' },
+                    'mindmap': { week: 1, title: 'WEEK 1', activity: 'Research Mindmap Creation' },
+                    'abstract': { week: 1, title: 'WEEK 1', activity: 'Updated Project Abstract' }
+                };
+                
+                return nodeWeekMap[nodeType] || null;
+            }
+            
+            function showNodeWeek(weekInfo) {
+                // Clear any existing labels
+                document.querySelectorAll('.week-line-label').forEach(label => {
+                    label.remove();
+                });
+                
+                // Find the clicked node
+                const clickedNode = event.target.closest('.node');
+                if (!clickedNode) return;
+                
+                const nodeType = clickedNode.dataset.node;
+                const connections = clickedNode.dataset.connects;
+                
+                if (connections) {
+                    const connectedNodes = connections.split(',');
+                    
+                    connectedNodes.forEach(connectedNodeType => {
+                        const connectedNode = document.querySelector(`[data-node="${connectedNodeType.trim()}"]`);
+                        if (connectedNode) {
+                            // Calculate midpoint of the connection line
+                            const clickedRect = clickedNode.getBoundingClientRect();
+                            const connectedRect = connectedNode.getBoundingClientRect();
+                            const containerRect = document.querySelector('.mindmap-container').getBoundingClientRect();
+                            
+                            const clickedX = clickedRect.left + clickedRect.width / 2 - containerRect.left;
+                            const clickedY = clickedRect.top + clickedRect.height / 2 - containerRect.top;
+                            const connectedX = connectedRect.left + connectedRect.width / 2 - containerRect.left;
+                            const connectedY = connectedRect.top + connectedRect.height / 2 - containerRect.top;
+                            
+                            const midX = (clickedX + connectedX) / 2;
+                            const midY = (clickedY + connectedY) / 2;
+                            
+                            // Create label positioned at midpoint of connection line
+                            const label = document.createElement('div');
+                            label.className = 'week-line-label active';
+                            label.textContent = weekInfo.title;
+                            
+                            label.style.left = midX + 'px';
+                            label.style.top = midY + 'px';
+                            label.style.transform = 'translate(-50%, -50%)';
+                            
+                            document.querySelector('.mindmap-container').appendChild(label);
+                        }
+                    });
+                }
+                
+                // Auto remove after 3 seconds
+                setTimeout(() => {
+                    document.querySelectorAll('.week-line-label').forEach(label => {
+                        label.classList.remove('active');
+                        setTimeout(() => label.remove(), 300);
+                    });
+                }, 3000);
+            }
+        });
+        
+        // Multi-user color system
+        class MultiUserColorSystem {
+            constructor() {
+                this.userId = this.generateUserId();
+                this.users = [];
+                this.colorRanges = [
+                    { hue: 0, name: 'red' },      // Red
+                    { hue: 30, name: 'orange' },   // Orange
+                    { hue: 60, name: 'yellow' },   // Yellow
+                    { hue: 120, name: 'green' },   // Green
+                    { hue: 180, name: 'cyan' },    // Cyan
+                    { hue: 240, name: 'blue' },    // Blue
+                    { hue: 270, name: 'purple' },  // Purple
+                    { hue: 300, name: 'magenta' }, // Magenta
+                    { hue: 15, name: 'coral' },    // Coral
+                    { hue: 45, name: 'gold' },     // Gold
+                    { hue: 90, name: 'lime' },     // Lime
+                    { hue: 150, name: 'teal' },    // Teal
+                ];
+                this.init();
+            }
+            
+            generateUserId() {
+                return 'user_' + Math.random().toString(36).substr(2, 9);
+            }
+            
+            init() {
+                // Simulate initial users (you can replace this with real WebSocket connection)
+                this.simulateUsers();
+                this.updateImageFilters();
+                this.showUserInfo();
+                
+                // Simulate users joining/leaving periodically
+                setInterval(() => {
+                    this.simulateUserChange();
+                }, 10000); // Every 10 seconds
+            }
+            
+            simulateUsers() {
+                // Start with 1-3 random users
+                const initialUserCount = Math.floor(Math.random() * 3) + 1;
+                for (let i = 0; i < initialUserCount; i++) {
+                    this.addUser(this.generateUserId());
+                }
+                // Add current user
+                this.addUser(this.userId);
+            }
+            
+            simulateUserChange() {
+                // Randomly add or remove users
+                if (Math.random() > 0.5 && this.users.length < 12) {
+                    // Add user
+                    this.addUser(this.generateUserId());
+                } else if (this.users.length > 1) {
+                    // Remove user (but not current user)
+                    const otherUsers = this.users.filter(u => u.id !== this.userId);
+                    if (otherUsers.length > 0) {
+                        const userToRemove = otherUsers[Math.floor(Math.random() * otherUsers.length)];
+                        this.removeUser(userToRemove.id);
+                    }
+                }
+            }
+            
+            addUser(userId) {
+                if (!this.users.find(u => u.id === userId)) {
+                    const colorIndex = this.users.length % this.colorRanges.length;
+                    const user = {
+                        id: userId,
+                        color: this.colorRanges[colorIndex],
+                        isCurrentUser: userId === this.userId
+                    };
+                    this.users.push(user);
+                    this.updateImageFilters();
+                    this.showUserInfo();
+                    console.log(`User ${userId} joined with ${user.color.name} filter`);
+                }
+            }
+            
+            removeUser(userId) {
+                this.users = this.users.filter(u => u.id !== userId);
+                this.updateImageFilters();
+                this.showUserInfo();
+                console.log(`User ${userId} left`);
+            }
+            
+            updateImageFilters() {
+                const images = document.querySelectorAll('.mindmap-image');
+                const userCount = this.users.length;
+                
+                // Remove existing overlays
+                document.querySelectorAll('.color-overlay').forEach(overlay => overlay.remove());
+                
+                // Apply filters based on user colors
+                images.forEach((img) => {
+                    // Reset styles
+                    img.style.filter = '';
+                    img.style.boxShadow = '';
+                    
+                    if (userCount === 0) {
+                        // No users - completely dark
+                        img.style.filter = 'brightness(0.1) saturate(0%)';
+                        return;
+                    }
+                    
+                    // Create a combined filter that reveals more as users join
+                    const brightness = Math.min(0.3 + (userCount * 0.1), 1.0);
+                    const saturation = Math.min(20 + (userCount * 15), 100);
+                    const contrast = Math.max(200 - (userCount * 10), 100);
+                    
+                    // Use the primary user's color as the main hue shift
+                    const primaryUser = this.users[0];
+                    let hueShift = 0;
+                    
+                    if (primaryUser) {
+                        // Convert user's hue to a filter effect
+                        hueShift = this.getHueShiftForColor(primaryUser.color.hue);
+                    }
+                    
+                    // Apply the combined filter
+                    img.style.filter = `
+                        brightness(${brightness})
+                        contrast(${contrast}%)
+                        saturate(${saturation}%)
+                        hue-rotate(${hueShift}deg)
+                        sepia(${Math.max(0.6 - (userCount * 0.1), 0)})
+                    `;
+                    
+                    // Add current user glow
+                    const currentUser = this.users.find(u => u.isCurrentUser);
+                    if (currentUser) {
+                        const glowColor = this.getColorFromHue(currentUser.color.hue);
+                        img.style.boxShadow = `0 0 8px ${glowColor}`;
+                    }
+                    
+                    // For multiple users, create multiple copies with different color filters
+                    if (userCount > 1) {
+                        this.createMultiUserOverlays(img.parentElement, img);
+                    }
+                });
+            }
+            
+            createMultiUserOverlays(imageElement, originalImg) {
+                // Create additional image copies with different color filters for each user
+                this.users.forEach((user, index) => {
+                    if (index === 0) return; // Skip first user (already applied to main image)
+                    
+                    const overlay = document.createElement('img');
+                    overlay.src = originalImg.src;
+                    overlay.className = 'color-overlay mindmap-image';
+                    overlay.style.position = 'absolute';
+                    overlay.style.top = '0';
+                    overlay.style.left = '0';
+                    overlay.style.width = '100%';
+                    overlay.style.height = '100%';
+                    overlay.style.objectFit = 'cover';
+                    overlay.style.borderRadius = '5px';
+                    overlay.style.pointerEvents = 'none';
+                    overlay.style.mixBlendMode = 'screen';
+                    overlay.style.opacity = '0.7';
+                    
+                    // Apply user-specific color filter
+                    const hueShift = this.getHueShiftForColor(user.color.hue);
+                    const userBrightness = 0.4;
+                    const userSaturation = 80;
+                    
+                    overlay.style.filter = `
+                        brightness(${userBrightness})
+                        contrast(150%)
+                        saturate(${userSaturation}%)
+                        hue-rotate(${hueShift}deg)
+                        sepia(0.3)
+                    `;
+                    
+                    imageElement.appendChild(overlay);
+                });
+            }
+            
+            getHueShiftForColor(userHue) {
+                // Convert user hue to filter hue-rotate value
+                // This shifts the image colors to emphasize the user's assigned color
+                return userHue - 180; // Offset to make colors more distinguishable
+            }
+            
+            createColorMasks() {
+                // This will be handled through CSS filter combinations
+                // Each user reveals specific color ranges across all images
+            }
+            
+            getCombinedColorFilter() {
+                const userCount = this.users.length;
+                
+                if (userCount === 0) {
+                    return 'brightness(0.1) saturate(0%) contrast(300%)';
+                }
+                
+                // Get the hue values of all current users
+                const userHues = this.users.map(user => user.color.hue);
+                
+                // Base visibility increases with more users
+                const brightness = Math.min(0.2 + (userCount * 0.12), 1.0);
+                const contrast = Math.max(200 - (userCount * 15), 100);
+                const saturation = Math.min(30 + (userCount * 20), 120);
+                
+                // For simplicity, we'll use a combined filter that becomes more permissive
+                // In a real implementation, you could use multiple overlays with different hue-rotate values
+                let combinedFilter = `brightness(${brightness}) contrast(${contrast}%) saturate(${saturation}%)`;
+                
+                // Add a slight hue shift based on the primary user's color
+                if (userCount > 0) {
+                    const primaryHue = userHues[0]; // Use first user's hue as base
+                    combinedFilter += ` hue-rotate(${primaryHue * 0.3}deg)`;
+                }
+                
+                // Add sepia effect that decreases with more users (simulating color revelation)
+                const sepiaAmount = Math.max(0.8 - (userCount * 0.15), 0);
+                combinedFilter += ` sepia(${sepiaAmount})`;
+                
+                return combinedFilter;
+            }
+            
+            createColorSelectionMatrix() {
+                // Simplified approach - in practice this would be more complex
+                const userCount = this.users.length;
+                return Math.min(userCount * 0.2, 1);
+            }
+            
+            getColorFromHue(hue) {
+                // Convert HSL to RGB for glow effect
+                const h = hue / 360;
+                const s = 0.7;
+                const l = 0.5;
+                
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                const r = Math.round(hue2rgb(p, q, h + 1/3) * 255);
+                const g = Math.round(hue2rgb(p, q, h) * 255);
+                const b = Math.round(hue2rgb(p, q, h - 1/3) * 255);
+                
+                return `rgba(${r}, ${g}, ${b}, 0.3)`;
+            }
+            
+            showUserInfo() {
+                // Create or update user info display
+                let userInfo = document.getElementById('user-info');
+                if (!userInfo) {
+                    userInfo = document.createElement('div');
+                    userInfo.id = 'user-info';
+                    userInfo.className = 'user-info';
+                    document.body.appendChild(userInfo);
+                }
+                
+                const currentUser = this.users.find(u => u.isCurrentUser);
+                userInfo.innerHTML = `
+                    <div class="user-count">${this.users.length} USERS ONLINE</div>
+                    <div class="user-color">YOUR COLOR: ${currentUser ? currentUser.color.name.toUpperCase() : 'NONE'}</div>
+                    <div class="visibility-info">VISIBILITY: ${Math.round((this.users.length / 12) * 100)}%</div>
+                `;
+            }
+        }
+        
+        
+        // Initialize the multi-user system
+        const colorSystem = new MultiUserColorSystem();
+    </script>
+</body>
+</html>

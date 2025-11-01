@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Documentation - Marion & Jess</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar sidebar-left">
+        <div class="info-panel" id="info-panel">
+            <div class="info-content" id="info-content">
+                <h3>Select a circle</h3>
+                <p>Click on any pink circle on the video to learn more about that element.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <header class="reveal-element" data-element="title">
+                <h1><a href="machine.html" class="machine-title-link">Our friend, 
+                    <br>MACHINE</a></h1>
+            </header>
+
+            <main id="content-container">
+                <!-- Week content moved to index2.html -->
+            </main>
+
+            <div class="machine-section revealed" data-element="machine" style="opacity: 1; transform: translateY(0);">
+                <!-- Horizontal Collaborative Machine Interface -->
+                <div class="machine-container" style="border: 3px solid red; min-height: 500px;">
+                    <!-- Left Controls -->
+                    <div class="controls-left" style="border: 2px solid blue;">
+                        <div class="control-panel">
+                            <h3>Digital Influence</h3>
+                            <div class="control-group digital-influence">
+                                <label>Speed Nudge <span class="influence-indicator">↗</span></label>
+                                <input type="range" id="speed" min="-3" max="3" value="0" step="0.5" oninput="updatePattern()">
+                                <span class="value" id="speed-value">0 RPM</span>
+                                <small>Influence physical pedal tempo</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Braiding Tension <span class="influence-indicator">⚡</span></label>
+                                <input type="range" id="colorDensity" min="0" max="100" value="50" oninput="updatePattern()">
+                                <span class="value" id="colorDensity-value">50%</span>
+                                <small>Spindle tension strength</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Content -->
+                    <div class="machine-center" style="border: 3px solid green; background: rgba(255,255,0,0.2);">
+                        <div class="system-status">
+                            <span class="machine-state" id="machine-state">● Machine Active</span>
+                            <span class="physical-users" id="physical-users">2 makers at installation</span>
+                        </div>
+                        
+                        <div class="pattern-generator" id="pattern-generator">
+                            <h4>Pattern Generator</h4>
+                            <canvas id="pattern-canvas" style="border: 2px solid purple; background: white;"></canvas>
+                        </div>
+                        
+                        <div class="machine-placeholder">
+                            <h4>Machine Video</h4>
+                            <video autoplay muted loop style="border: 2px solid orange;">
+                                <source src="LowSun.mp4" type="video/mp4">
+                                <source src="LowSun.mov" type="video/quicktime">
+                                <source src="LowSun.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="circle-overlay">
+                                <div class="circle circle1" data-info="fiber-analysis" onclick="showInfo('fiber-analysis')"></div>
+                                <div class="circle circle2" data-info="tension-control" onclick="showInfo('tension-control')"></div>
+                                <div class="circle circle3" data-info="pattern-mechanism" onclick="showInfo('pattern-mechanism')"></div>
+                                <div class="circle circle4" data-info="speed-regulation" onclick="showInfo('speed-regulation')"></div>
+                                <div class="circle circle5" data-info="material-feed" onclick="showInfo('material-feed')"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Controls -->
+                    <div class="controls-right">
+                        <div class="control-panel">
+                            <h3>Material & Status</h3>
+                            <div class="control-group digital-influence">
+                                <label>Color Options <span class="influence-indicator">🎨</span></label>
+                                <div class="color-options">
+                                    <div class="color-swatch" data-color="#8B4513" style="background-color: #8B4513;" onclick="selectColor('#8B4513')"></div>
+                                    <div class="color-swatch" data-color="#F26E69" style="background-color: #F26E69;" onclick="selectColor('#F26E69')"></div>
+                                    <div class="color-swatch" data-color="#E818F2" style="background-color: #E818F2;" onclick="selectColor('#E818F2')"></div>
+                                    <div class="color-swatch" data-color="#4CAF50" style="background-color: #4CAF50;" onclick="selectColor('#4CAF50')"></div>
+                                    <div class="color-swatch" data-color="#2196F3" style="background-color: #2196F3;" onclick="selectColor('#2196F3')"></div>
+                                    <div class="color-swatch selected" data-color="#FF9800" style="background-color: #FF9800;" onclick="selectColor('#FF9800')"></div>
+                                </div>
+                                <small>Select color preference</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Preview Yarn <span class="influence-indicator">🧶</span></label>
+                                <select id="yarnMaterial" onchange="updateYarnPreview()">
+                                    <option value="cotton-thin">Cotton - Thin</option>
+                                    <option value="cotton-medium" selected>Cotton - Medium</option>
+                                    <option value="cotton-thick">Cotton - Thick</option>
+                                    <option value="wool-thin">Wool - Thin</option>
+                                    <option value="wool-medium">Wool - Medium</option>
+                                    <option value="wool-thick">Wool - Thick</option>
+                                    <option value="hemp-medium">Hemp - Medium</option>
+                                    <option value="silk-thin">Silk - Thin</option>
+                                </select>
+                                <small>Material and thickness</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Place Needles <span class="influence-indicator">📍</span></label>
+                                <div class="needle-options">
+                                    <button class="needle-btn active" data-needle="1" onclick="selectNeedle(1)">1</button>
+                                    <button class="needle-btn" data-needle="2" onclick="selectNeedle(2)">2</button>
+                                    <button class="needle-btn" data-needle="3" onclick="selectNeedle(3)">3</button>
+                                    <button class="needle-btn" data-needle="4" onclick="selectNeedle(4)">4</button>
+                                </div>
+                                <small>Needle configuration</small>
+                            </div>
+                            <div class="live-feedback">
+                                <div class="sensor-data">
+                                    <span class="sensor" id="actual-speed">Physical Speed: <strong>4.2 RPM</strong></span>
+                                    <span class="sensor" id="tension">Tension: <strong>Medium</strong></span>
+                                    <span class="sensor" id="color-applied">Color Applied: <strong>Yes</strong></span>
+                                </div>
+                            </div>
+                            <div class="collaboration-status">
+                                <div class="interaction-cycle">
+                                    <span class="cycle-phase" id="cycle-phase">Adaptation Phase</span>
+                                    <div class="cycle-progress">
+                                        <div class="progress-bar" id="progress-bar"></div>
+                                    </div>
+                                </div>
+                                <span class="users-online" id="users-online">3 digital participants</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    <div class="sidebar sidebar-right">
+        <div class="nav-link">
+            <a href="index2.html">PROCESS</a>
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+        // Shared variables for collaborative physical-digital system
+        let sharedVariables = {
+            digitalSpeedNudge: 0,    // Digital influence on speed (-3 to +3)
+            physicalBaseSpeed: 4.2,  // Actual machine speed from pedal
+            colorIntensity: 50,      // Digital color mixing intensity
+            suggestedMaterial: '#FF9800', // Digital material suggestion
+            actualMaterial: '#FF9800',     // What's actually loaded
+            yarnType: 'cotton-medium',     // Selected yarn material and thickness
+            selectedNeedle: 1,             // Selected needle configuration
+            interactionCycle: 'adaptation' // Current collaboration phase
+        };
+        
+        let sensorData = {
+            speed: 4.2,
+            tension: 'medium',
+            colorApplied: true,
+            circlePositions: [0.2, 0.8, 0.7, 0.25, 0.1] // From physical adjusters
+        };
+        
+        let interactionCycles = ['initiation', 'digital-intervention', 'adaptation', 'reflection'];
+        let currentCycleIndex = 2;
+        
+        // Pattern Generator with Machine Controls
+        let canvas, ctx, currentPattern = {};
+        const circlePositions = [
+            { x: 0.2, y: 0.15 },  // circle1 position
+            { x: 0.8, y: 0.65 },  // circle2 position
+            { x: 0.7, y: 0.30 },  // circle3 position
+            { x: 0.25, y: 0.80 }, // circle4 position
+            { x: 0.1, y: 0.45 }   // circle5 position
+        ];
+        
+        function initPatternGenerator() {
+            canvas = document.getElementById('pattern-canvas');
+            if (!canvas) {
+                console.error('Canvas element not found!');
+                return;
+            }
+            
+            ctx = canvas.getContext('2d');
+            if (!ctx) {
+                console.error('Canvas context not available!');
+                return;
+            }
+            
+            // Set canvas size explicitly
+            canvas.width = 500;
+            canvas.height = 120;
+            canvas.style.width = '100%';
+            canvas.style.height = '120px';
+            
+            console.log('Canvas initialized:', canvas.width, 'x', canvas.height);
+            
+            // Draw test pattern to verify canvas is working
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#E818F2';
+            ctx.fillText('Pattern Generator Loading...', 10, 20);
+            
+            // Start animation loop
+            animate();
+            simulateUsers();
+            
+            // Simulate other users making changes
+            setInterval(simulateUserActivity, 15000);
+        }
+        
+        function animate() {
+            generatePattern();
+            requestAnimationFrame(animate);
+        }
+        
+        function updatePattern() {
+            updateValueDisplays();
+            updateSharedVariables();
+            generatePattern();
+            updateVideoCircles();
+            updateSensorFeedback();
+            updateInteractionCycle();
+        }
+        
+        function updateValueDisplays() {
+            const speedNudge = parseFloat(document.getElementById('speed').value);
+            const speedText = speedNudge >= 0 ? `+${speedNudge}` : speedNudge.toString();
+            document.getElementById('speed-value').textContent = speedText + ' RPM';
+            document.getElementById('colorDensity-value').textContent = document.getElementById('colorDensity').value + '%';
+        }
+        
+        function updateSharedVariables() {
+            sharedVariables.digitalSpeedNudge = parseFloat(document.getElementById('speed').value);
+            sharedVariables.colorIntensity = parseInt(document.getElementById('colorDensity').value);
+            sharedVariables.suggestedMaterial = document.getElementById('currentColor').value;
+            
+            // Simulate physical machine response to digital inputs
+            sharedVariables.physicalBaseSpeed = 4.2 + (sharedVariables.digitalSpeedNudge * 0.3);
+            
+            // Material follows suggestion with some delay/resistance
+            if (Math.random() > 0.7) {
+                sharedVariables.actualMaterial = sharedVariables.suggestedMaterial;
+            }
+        }
+        
+        function updateSensorFeedback() {
+            // Simulate real sensor data from physical machine
+            sensorData.speed = sharedVariables.physicalBaseSpeed + (Math.random() - 0.5) * 0.3;
+            sensorData.tension = sharedVariables.colorIntensity > 70 ? 'high' : 
+                                sharedVariables.colorIntensity < 30 ? 'low' : 'medium';
+            sensorData.colorApplied = sharedVariables.colorIntensity > 20;
+            
+            // Update sensor display
+            document.getElementById('actual-speed').innerHTML = `Physical Speed: <strong>${sensorData.speed.toFixed(1)} RPM</strong>`;
+            document.getElementById('tension').innerHTML = `Tension: <strong>${sensorData.tension.charAt(0).toUpperCase() + sensorData.tension.slice(1)}</strong>`;
+            document.getElementById('color-applied').innerHTML = `Color Applied: <strong>${sensorData.colorApplied ? 'Yes' : 'No'}</strong>`;
+        }
+        
+        function updateInteractionCycle() {
+            // Simulate interaction cycle progression
+            const cycleNames = {
+                'initiation': 'Initiation Phase',
+                'digital-intervention': 'Digital Intervention',
+                'adaptation': 'Adaptation Phase', 
+                'reflection': 'Reflection Phase'
+            };
+            
+            document.getElementById('cycle-phase').textContent = cycleNames[interactionCycles[currentCycleIndex]];
+            
+            // Update progress bar
+            const progress = ((Date.now() / 10000) % 1) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            
+            // Change cycle every 10 seconds
+            if (Math.floor(Date.now() / 10000) !== Math.floor((Date.now() - 100) / 10000)) {
+                currentCycleIndex = (currentCycleIndex + 1) % interactionCycles.length;
+            }
+        }
+        
+        function updateVideoCircles() {
+            const circles = document.querySelectorAll('.circle');
+            const actualSpeed = sensorData.speed;
+            const tension = sensorData.tension;
+            const appliedColor = sharedVariables.actualMaterial;
+            
+            circles.forEach((circle, index) => {
+                // Update circle color to reflect actual material being used
+                circle.style.backgroundColor = appliedColor;
+                
+                // Update opacity based on color intensity and tension
+                const baseOpacity = 0.3 + (sharedVariables.colorIntensity / 100) * 0.6;
+                const tensionMultiplier = tension === 'high' ? 1.2 : tension === 'low' ? 0.8 : 1;
+                circle.style.opacity = Math.min(baseOpacity * tensionMultiplier, 1);
+                
+                // Update size based on tension
+                const baseSize = 18;
+                const tensionSize = tension === 'high' ? 25 : tension === 'low' ? 12 : 18;
+                circle.style.width = tensionSize + 'px';
+                circle.style.height = tensionSize + 'px';
+                
+                // Update animation speed based on actual machine speed
+                const animationDuration = Math.max(0.5, 4 - (actualSpeed / 6)); 
+                circle.style.animation = `circlePulse ${animationDuration}s ease-in-out infinite`;
+                circle.style.animationDelay = `${index * 0.3}s`;
+                
+                // Add special effects during digital intervention phase
+                if (interactionCycles[currentCycleIndex] === 'digital-intervention') {
+                    circle.style.boxShadow = `
+                        0 0 0 2px rgba(255,255,255,0.5),
+                        0 0 15px rgba(${hexToRgb(appliedColor).r}, ${hexToRgb(appliedColor).g}, ${hexToRgb(appliedColor).b}, 0.6)
+                    `;
+                } else {
+                    circle.style.boxShadow = `0 2px 8px rgba(${hexToRgb(appliedColor).r}, ${hexToRgb(appliedColor).g}, ${hexToRgb(appliedColor).b}, 0.4)`;
+                }
+            });
+        }
+        
+        function generatePattern() {
+            if (!canvas || !ctx) {
+                console.error('Canvas or context not available for pattern generation');
+                return;
+            }
+            
+            console.log('Generating pattern...');
+            
+            // Get collaborative system values
+            const digitalSpeedNudge = sharedVariables.digitalSpeedNudge;
+            const actualSpeed = sensorData.speed;
+            const colorIntensity = sharedVariables.colorIntensity;
+            const selectedColor = sharedVariables.suggestedMaterial;
+            const yarnType = sharedVariables.yarnType || 'cotton-medium';
+            const needleConfig = sharedVariables.selectedNeedle || 1;
+            const currentPhase = interactionCycles[currentCycleIndex];
+            
+            // Extract material properties from yarn type
+            const materialType = yarnType.split('-')[0]; // cotton, wool, hemp, silk
+            const materialThickness = yarnType.includes('thin') ? 0.7 : 
+                                     yarnType.includes('thick') ? 1.4 : 1.0;
+            
+            // Clear canvas with visible background
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw a simple test pattern first
+            ctx.fillStyle = selectedColor;
+            ctx.fillRect(10, 10, 50, 20);
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText(`Material: ${materialType}`, 10, 40);
+            ctx.fillText(`Needles: ${6 + (needleConfig * 2)}`, 10, 55);
+            ctx.fillText(`Speed: ${(actualSpeed + digitalSpeedNudge).toFixed(1)} RPM`, 10, 70);
+            
+            // Try to draw the rope braiding pattern
+            try {
+                drawRopeBraidingPattern(selectedColor, materialType, materialThickness, needleConfig);
+            } catch (error) {
+                console.error('Error drawing rope pattern:', error);
+                ctx.fillStyle = '#ff0000';
+                ctx.fillText('Pattern Error: ' + error.message, 10, 85);
+            }
+        }
+        
+        function drawRopeBraidingPattern(selectedColor, materialType, materialThickness, needleConfig) {
+            // Simplified pattern drawing for debugging
+            const totalSpindles = 6 + (needleConfig * 2);
+            const rowHeight = 8 + (materialThickness * 3);
+            const totalRows = Math.floor(canvas.height / rowHeight);
+            
+            ctx.fillStyle = selectedColor;
+            ctx.globalAlpha = 0.7;
+            
+            for (let row = 0; row < Math.min(totalRows, 10); row++) {
+                const y = row * rowHeight + 80; // Start below the text
+                for (let spindle = 0; spindle < totalSpindles; spindle++) {
+                    const x = 80 + (spindle * 30);
+                    const radius = 2 * materialThickness;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function drawRopeBraidingRow(rowIndex, totalRows, rowHeight, spindleWidth, totalSpindles, 
+                                    time, color, intensity, speed, phase, materialType, materialThickness) {
+            const y = canvas.height - (rowIndex * rowHeight) - rowHeight;
+            const baseColor = hexToRgb(color);
+            
+            // Material-specific properties
+            const materialProperties = {
+                cotton: { roughness: 0.2, shine: 0.3, fuzziness: 0.1 },
+                wool: { roughness: 0.8, shine: 0.1, fuzziness: 0.9 },
+                hemp: { roughness: 0.7, shine: 0.2, fuzziness: 0.3 },
+                silk: { roughness: 0.1, shine: 0.9, fuzziness: 0.0 }
+            };
+            const matProps = materialProperties[materialType] || materialProperties.cotton;
+            
+            // Phase-specific row variations for rope braiding
+            let phaseModifier = 1;
+            let braidVariation = 0;
+            
+            switch(phase) {
+                case 'initiation':
+                    phaseModifier = 0.8; // Slower, more uniform braiding
+                    break;
+                case 'digital-intervention':
+                    braidVariation = Math.sin(time * 3) * 0.4; // Digital disruption affects braid
+                    break;
+                case 'adaptation':
+                    phaseModifier = 1 + Math.sin(time * 0.5) * 0.3; // Physical adaptation
+                    break;
+                case 'reflection':
+                    phaseModifier = 0.9; // Settled braiding state
+                    break;
+            }
+            
+            // Calculate row-specific variations
+            const rowTime = time + (rowIndex * 0.3 * phaseModifier);
+            const rowIntensity = Math.max(0.2, Math.min(1, intensity + braidVariation));
+            
+            // Draw spindle positions in this row
+            for (let spindle = 0; spindle < totalSpindles; spindle++) {
+                const baseX = spindle * spindleWidth + spindleWidth/2;
+                
+                // Calculate braiding offset for this spindle at this row
+                const spindlePhase = (spindle / totalSpindles) * Math.PI * 2;
+                const braidOffset = Math.sin(rowTime + spindlePhase) * (spindleWidth * 0.8) * rowIntensity;
+                const x = baseX + braidOffset;
+                
+                // Spindle-specific intensity (simulating different yarn tensions)
+                const spindleIntensity = Math.max(0.3, Math.min(1, 
+                    rowIntensity + Math.sin(spindle * 0.5 + rowTime) * 0.2));
+                
+                // Draw rope strand from this spindle
+                drawRopeStrand(x, y, rowHeight, spindleIntensity, color, phase, spindle, 
+                              materialType, materialThickness, matProps);
+                
+                // Connect to adjacent spindles (braiding pattern)
+                if (spindle < totalSpindles - 1) {
+                    const nextSpindle = spindle + 1;
+                    const nextBaseX = nextSpindle * spindleWidth + spindleWidth/2;
+                    const nextSpindlePhase = (nextSpindle / totalSpindles) * Math.PI * 2;
+                    const nextBraidOffset = Math.sin(rowTime + nextSpindlePhase) * (spindleWidth * 0.8) * rowIntensity;
+                    const nextX = nextBaseX + nextBraidOffset;
+                    
+                    // Draw braiding connection
+                    drawBraidConnection(x, nextX, y, rowHeight, spindleIntensity, color, phase, materialThickness);
+                }
+            }
+            
+            // Draw row separator with phase-specific styling
+            ctx.globalAlpha = phase === 'digital-intervention' ? 0.3 : 0.15;
+            ctx.strokeStyle = phase === 'digital-intervention' ? '#E818F2' : '#ccc';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function drawRopeStrand(x, y, height, intensity, color, phase, spindleIndex, materialType, materialThickness, matProps) {
+            const baseColor = hexToRgb(color);
+            const strandWidth = (1.5 + intensity * 1.5) * materialThickness;
+            
+            // Color variations for different spindles
+            const colorVariation = Math.sin(spindleIndex * 0.8) * 20 * matProps.roughness;
+            const adjustedColor = {
+                r: Math.max(0, Math.min(255, baseColor.r + colorVariation)),
+                g: Math.max(0, Math.min(255, baseColor.g + colorVariation)), 
+                b: Math.max(0, Math.min(255, baseColor.b + colorVariation))
+            };
+            
+            const baseOpacity = 0.7 + intensity * 0.2;
+            
+            // Material-specific rendering
+            if (materialType === 'wool') {
+                // Fuzzy, thick appearance for wool
+                ctx.fillStyle = `rgba(${adjustedColor.r}, ${adjustedColor.g}, ${adjustedColor.b}, ${baseOpacity * 0.8})`;
+                
+                // Main strand
+                ctx.beginPath();
+                ctx.arc(x, y + height/2, strandWidth/2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Add fuzziness
+                for (let i = 0; i < 3; i++) {
+                    const fuzzX = x + (Math.random() - 0.5) * strandWidth * 1.5;
+                    const fuzzY = y + height/2 + (Math.random() - 0.5) * height;
+                    ctx.fillStyle = `rgba(${adjustedColor.r}, ${adjustedColor.g}, ${adjustedColor.b}, ${baseOpacity * 0.3})`;
+                    ctx.beginPath();
+                    ctx.arc(fuzzX, fuzzY, strandWidth/4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+            } else if (materialType === 'silk') {
+                // Smooth, lustrous appearance for silk
+                const lustrousColor = {
+                    r: Math.min(255, adjustedColor.r + 30),
+                    g: Math.min(255, adjustedColor.g + 30),
+                    b: Math.min(255, adjustedColor.b + 30)
+                };
+                
+                ctx.fillStyle = `rgba(${adjustedColor.r}, ${adjustedColor.g}, ${adjustedColor.b}, ${baseOpacity})`;
+                ctx.beginPath();
+                ctx.arc(x, y + height/2, strandWidth/2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Add lustrous highlight
+                ctx.fillStyle = `rgba(${lustrousColor.r}, ${lustrousColor.g}, ${lustrousColor.b}, ${baseOpacity * 0.6})`;
+                ctx.beginPath();
+                ctx.arc(x - strandWidth/4, y + height/2 - strandWidth/4, strandWidth/3, 0, Math.PI * 2);
+                ctx.fill();
+                
+            } else if (materialType === 'hemp') {
+                // Rough, textured appearance for hemp
+                ctx.fillStyle = `rgba(${adjustedColor.r}, ${adjustedColor.g}, ${adjustedColor.b}, ${baseOpacity})`;
+                
+                // Draw irregular strand shape
+                ctx.beginPath();
+                ctx.moveTo(x - strandWidth/2, y + 1);
+                for (let i = 0; i < height - 2; i += 2) {
+                    const roughness = (Math.random() - 0.5) * strandWidth * 0.3;
+                    ctx.lineTo(x + roughness, y + 1 + i);
+                }
+                ctx.lineWidth = strandWidth;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                
+            } else {
+                // Cotton - clean, smooth appearance
+                ctx.fillStyle = `rgba(${adjustedColor.r}, ${adjustedColor.g}, ${adjustedColor.b}, ${baseOpacity})`;
+                
+                if (phase === 'digital-intervention' && spindleIndex % 3 === 0) {
+                    // Digital influence on every 3rd spindle
+                    ctx.fillStyle = '#E818F2';
+                    ctx.fillRect(x - strandWidth/2, y + 1, strandWidth, height - 2);
+                    
+                    // Add digital effect
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.fillRect(x - strandWidth/4, y + 2, strandWidth/2, height - 4);
+                } else {
+                    // Normal cotton strand
+                    ctx.beginPath();
+                    ctx.arc(x, y + height/2, strandWidth/2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Add subtle highlight
+                    ctx.fillStyle = `rgba(255, 255, 255, ${0.3 * intensity})`;
+                    ctx.beginPath();
+                    ctx.arc(x - strandWidth/4, y + height/2 - strandWidth/4, strandWidth/4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        function drawBraidConnection(x1, x2, y, height, intensity, color, phase, materialThickness) {
+            const baseColor = hexToRgb(color);
+            
+            ctx.strokeStyle = `rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, ${0.3 + intensity * 0.2})`;
+            ctx.lineWidth = (0.8 + intensity * 0.5) * materialThickness;
+            ctx.lineCap = 'round';
+            
+            // Curved braiding connection
+            ctx.beginPath();
+            ctx.moveTo(x1, y + height/2);
+            
+            const midX = (x1 + x2) / 2;
+            const controlY = y + height/2 + (Math.sin((x1 + x2) * 0.1) * height * 0.3);
+            
+            ctx.quadraticCurveTo(midX, controlY, x2, y + height/2);
+            ctx.stroke();
+        }
+        
+        function drawRopeMachineIndicators(totalRows, rowHeight, speed, digitalSpeedNudge, phase, materialType, totalSpindles) {
+            // Draw speed and material info
+            ctx.fillStyle = '#666';
+            ctx.font = '10px Space Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText(`${(speed + digitalSpeedNudge).toFixed(1)} RPM`, 10, 15);
+            
+            // Material and spindle info
+            ctx.textAlign = 'right';
+            const materialInfo = `${materialType.charAt(0).toUpperCase() + materialType.slice(1)} | ${totalSpindles} spindles`;
+            ctx.fillText(materialInfo, canvas.width - 10, 15);
+            
+            // Current row indicator (moving based on speed)
+            const currentRowIndex = Math.floor((Date.now() * (speed + digitalSpeedNudge) / 4000) % totalRows);
+            const indicatorY = canvas.height - (currentRowIndex * rowHeight) - rowHeight;
+            
+            // Color the indicator based on current color selection
+            ctx.fillStyle = sharedVariables.suggestedMaterial;
+            ctx.fillRect(0, indicatorY, 4, rowHeight);
+            
+            // Phase indicator
+            ctx.fillStyle = phase === 'digital-intervention' ? '#E818F2' : '#4CAF50';
+            ctx.font = '8px Space Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText(phase.replace('-', ' '), 10, canvas.height - 5);
+        }
+        
+        function getCollaborativeStitchType(intensity, speed, stitchIndex, rowIndex, phase) {
+            // Stitch types influenced by physical-digital collaboration
+            if (phase === 'digital-intervention' && Math.random() > 0.7) return 'digital'; // Digital influence
+            if (intensity > 0.8) return 'cable'; // High intensity collaboration
+            if (speed > 6) return 'loose'; // Fast physical response
+            if ((stitchIndex + rowIndex) % 2 === 0) return 'knit';
+            return 'purl';
+        }
+        
+        function drawRopeMachineIndicators(totalRows, rowHeight, actualSpeed, digitalNudge, phase) {
+            // Spindle position indicators at top
+            ctx.fillStyle = '#999';
+            ctx.font = '6px Space Mono';
+            ctx.textAlign = 'center';
+            
+            for (let spindle = 0; spindle < 12; spindle++) {
+                const x = (spindle * (canvas.width / 12)) + (canvas.width / 24);
+                ctx.fillText((spindle + 1).toString(), x, 8);
+            }
+            
+            // Row numbers on the left
+            ctx.fillStyle = '#666';
+            ctx.font = '7px Space Mono';
+            ctx.textAlign = 'right';
+            
+            for (let row = 0; row < totalRows; row += 2) {
+                const y = canvas.height - (row * rowHeight) - rowHeight/2;
+                ctx.fillText((row + 1).toString(), 15, y + 2);
+            }
+            
+            // Machine status display
+            ctx.fillStyle = '#F26E69';
+            ctx.font = '6px Space Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText(`${actualSpeed.toFixed(1)} RPM`, 20, 18);
+            ctx.fillText('12 Spindles', 20, 28);
+            
+        function drawKnittingRow(rowIndex, totalRows, rowHeight, stitchWidth, totalStitches, time, color, density, speed) {
+            const y = canvas.height - (rowIndex * rowHeight) - rowHeight; // Start from bottom
+            const baseColor = hexToRgb(color);
+            
+            // Calculate row-specific variations (simulating machine changes over time)
+            const rowTime = time + (rowIndex * 0.5);
+            const rowDensity = density + Math.sin(rowTime) * 0.2; // Density varies per row
+            const rowSpeed = speed + Math.cos(rowTime * 0.8) * 2; // Speed variations
+            
+            // Draw individual stitches in this row
+            for (let stitch = 0; stitch < totalStitches; stitch++) {
+                const x = stitch * stitchWidth;
+                
+                // Stitch variations based on machine parameters
+                const stitchDensity = Math.max(0.2, Math.min(1, rowDensity + Math.sin(stitch * 0.3 + rowTime) * 0.3));
+                const stitchOpacity = 0.4 + (stitchDensity * 0.5);
+                
+                // Different stitch types based on density and speed
+                const stitchType = getStitchType(stitchDensity, rowSpeed, stitch, rowIndex);
+                
+                ctx.globalAlpha = stitchOpacity;
+                drawStitch(x, y, stitchWidth, rowHeight, stitchType, color, stitchDensity);
+            }
+            
+            // Draw row separator line
+            ctx.globalAlpha = 0.2;
+            ctx.strokeStyle = '#999';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function getStitchType(density, speed, stitchIndex, rowIndex) {
+            // Different stitch patterns based on machine parameters
+            if (density > 0.8) return 'cable'; // High density = cable stitch
+            if (speed > 7) return 'loose'; // High speed = loose stitch
+            if ((stitchIndex + rowIndex) % 2 === 0) return 'knit'; // Alternating knit
+            return 'purl'; // Default purl stitch
+        }
+        
+        function drawStitch(x, y, width, height, type, color, density) {
+            const baseColor = hexToRgb(color);
+            ctx.fillStyle = `rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, ${0.7})`;
+            
+            switch (type) {
+                case 'knit':
+                    // V-shaped knit stitch
+                    ctx.beginPath();
+                    ctx.moveTo(x + 1, y + height - 1);
+                    ctx.lineTo(x + width/2, y + 2);
+                    ctx.lineTo(x + width - 1, y + height - 1);
+                    ctx.lineWidth = 1 + density;
+                    ctx.strokeStyle = ctx.fillStyle;
+                    ctx.stroke();
+                    break;
+                    
+                case 'purl':
+                    // Horizontal purl stitch
+                    ctx.fillRect(x + 1, y + height/2 - 1, width - 2, 2 + density);
+                    break;
+                    
+                case 'cable':
+                    // Twisted cable stitch
+                    ctx.beginPath();
+                    ctx.arc(x + width/2, y + height/2, width/3, 0, Math.PI * 2);
+                    ctx.fill();
+                    break;
+                    
+                case 'loose':
+                    // Loose/dropped stitch
+                    ctx.strokeStyle = ctx.fillStyle;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(x + width/4, y + 2);
+                    ctx.lineTo(x + 3*width/4, y + height - 2);
+                    ctx.stroke();
+                    break;
+                    
+                case 'digital':
+                    // Digital intervention stitch (pixelated effect)
+                    ctx.fillStyle = '#E818F2';
+                    ctx.fillRect(x + 1, y + 1, width - 2, height - 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.fillRect(x + 2, y + 2, width - 4, height - 4);
+                    break;
+            }
+        }
+        
+        function drawMachineIndicators(totalRows, rowHeight, speed) {
+            // Draw row numbers on the left
+            ctx.fillStyle = '#666';
+            ctx.font = '8px Space Mono';
+            ctx.textAlign = 'right';
+            
+            for (let row = 0; row < totalRows; row += 2) {
+                const y = canvas.height - (row * rowHeight) - rowHeight/2;
+                ctx.fillText((row + 1).toString(), 15, y + 2);
+            }
+            
+            // Draw speed indicator
+            ctx.fillStyle = '#F26E69';
+            ctx.font = '6px Space Mono';
+            ctx.textAlign = 'left';
+            ctx.fillText(`${speed} RPM`, 20, 12);
+            
+            // Draw current row indicator (moving based on speed)
+            const currentRowIndex = Math.floor((Date.now() * speed / 5000) % totalRows);
+            const indicatorY = canvas.height - (currentRowIndex * rowHeight) - rowHeight;
+            
+            ctx.fillStyle = '#F26E69';
+            ctx.fillRect(0, indicatorY, 3, rowHeight);
+        }
+        
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : {r: 242, g: 110, b: 105};
+        }
+        
+        function sendToMachine() {
+            // Simulate sending pattern to physical machine
+            const statusElement = document.getElementById('machine-status');
+            statusElement.textContent = '● Transmitting...';
+            statusElement.style.color = '#FF8A80';
+            
+            setTimeout(() => {
+                statusElement.textContent = '● Pattern Sent Successfully';
+                statusElement.style.color = '#4CAF50';
+                
+                setTimeout(() => {
+                    statusElement.textContent = '● Machine Ready';
+                    statusElement.style.color = '#F26E69';
+                }, 2000);
+            }, 1500);
+            
+            console.log('Pattern sent to machine:', currentPattern);
+        }
+        
+        function savePattern() {
+            // Simulate saving pattern
+            const patternData = {
+                ...currentPattern,
+                id: 'pattern_' + Date.now(),
+                userId: 'user_' + Math.random().toString(36).substr(2, 5)
+            };
+            
+            // In a real implementation, this would save to a database
+            localStorage.setItem('savedPattern_' + patternData.id, JSON.stringify(patternData));
+            
+            alert('Pattern saved! You can share this with collaborators.');
+            console.log('Saved pattern:', patternData);
+        }
+        
+        function simulateUsers() {
+            const digitalCount = 1 + Math.floor(Math.random() * 5);
+            const physicalCount = 2 + Math.floor(Math.random() * 2);
+            document.getElementById('users-online').textContent = `${digitalCount} digital participants`;
+            document.getElementById('physical-users').textContent = `${physicalCount} makers at installation`;
+        }
+        
+        function simulateUserActivity() {
+            // Simulate collaborative adjustments between physical and digital users
+            const controls = ['speed', 'colorDensity', 'currentColor'];
+            const randomControl = controls[Math.floor(Math.random() * controls.length)];
+            const controlElement = document.getElementById(randomControl);
+            
+            if (randomControl === 'currentColor') {
+                // Material suggestions from digital participants
+                const materials = ['#8B4513', '#F26E69', '#E818F2', '#4CAF50', '#2196F3'];
+                const currentIndex = materials.indexOf(controlElement.value);
+                const newIndex = (currentIndex + 1 + Math.floor(Math.random() * 3)) % materials.length;
+                controlElement.value = materials[newIndex];
+            } else if (randomControl === 'speed') {
+                // Speed nudges from digital participants
+                const currentValue = parseFloat(controlElement.value);
+                const nudge = (Math.random() - 0.5) * 2; // -1 to +1
+                const newValue = Math.max(-3, Math.min(3, nudge));
+                controlElement.value = newValue.toFixed(1);
+            } else {
+                // Color intensity adjustments
+                const currentValue = parseFloat(controlElement.value);
+                const adjustment = (Math.random() - 0.5) * 30;
+                const newValue = Math.max(0, Math.min(100, currentValue + adjustment));
+                controlElement.value = Math.round(newValue);
+            }
+            
+            updatePattern();
+            
+            // Show collaborative activity
+            document.getElementById('users-online').style.color = '#E818F2';
+            setTimeout(() => {
+                document.getElementById('users-online').style.color = '#666';
+                simulateUsers();
+            }, 1500);
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing pattern generator...');
+            initPatternGenerator();
+            // Initialize video circles with default values
+            updateSharedVariables();
+            updateVideoCircles();
+        });
+        
+        // Also try to initialize immediately in case DOM is already loaded
+        if (document.readyState === 'loading') {
+            // Do nothing, DOMContentLoaded will fire
+        } else {
+            // DOM is already loaded
+            console.log('DOM already loaded, initializing immediately...');
+            setTimeout(() => {
+                initPatternGenerator();
+                updateSharedVariables();
+                updateVideoCircles();
+            }, 100);
+        }
+        
+        function showInfo(infoType) {
+            const infoContent = document.getElementById('info-content');
+            const infoData = {
+                'fiber-analysis': {
+                    title: 'Fiber Analysis',
+                    content: 'This component analyzes the quality and tension of individual fibers before braiding. It ensures consistent material properties and identifies any defects that could affect the final product quality.'
+                },
+                'tension-control': {
+                    title: 'Tension Control',
+                    content: 'The tension control system maintains optimal fiber tension throughout the braiding process. It automatically adjusts to prevent breakage while ensuring tight, consistent braiding patterns.'
+                },
+                'pattern-mechanism': {
+                    title: 'Pattern Mechanism',
+                    content: 'This mechanical system controls the intricate braiding patterns. It coordinates the movement of multiple fiber carriers to create complex geometric patterns and textures in the braided material.'
+                },
+                'speed-regulation': {
+                    title: 'Speed Regulation',
+                    content: 'The speed regulation unit controls the braiding velocity based on material type and pattern complexity. It ensures consistent quality while maximizing production efficiency.'
+                },
+                'material-feed': {
+                    title: 'Material Feed',
+                    content: 'The material feed system manages the continuous supply of fibers to the braiding mechanism. It monitors material levels and ensures smooth, uninterrupted feeding during production.'
+                }
+            };
+            
+            const info = infoData[infoType];
+            if (info) {
+                infoContent.innerHTML = `
+                    <h3>${info.title}</h3>
+                    <p>${info.content}</p>
+                `;
+            }
+        }
+        
+        // New control functions
+        function selectColor(color) {
+            // Remove selected class from all swatches
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked swatch
+            document.querySelector(`[data-color="${color}"]`).classList.add('selected');
+            
+            // Update the pattern with new color
+            sharedVariables.suggestedMaterial = color;
+            sharedVariables.actualMaterial = color;
+            generatePattern(); // Regenerate pattern with new color
+            updateSharedVariables();
+        }
+        
+        function updateYarnPreview() {
+            const yarnSelect = document.getElementById('yarnMaterial');
+            const selectedYarn = yarnSelect.value;
+            
+            // Update shared variables with yarn selection
+            sharedVariables.yarnType = selectedYarn;
+            
+            // Visual feedback - update pattern based on material
+            console.log('Yarn preview updated:', selectedYarn);
+            
+            // Regenerate pattern with new material properties
+            generatePattern();
+            updateSharedVariables();
+        }
+        
+        function selectNeedle(needleNumber) {
+            // Remove active class from all needle buttons
+            document.querySelectorAll('.needle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to selected needle
+            document.querySelector(`[data-needle="${needleNumber}"]`).classList.add('active');
+            
+            // Update shared variables
+            sharedVariables.selectedNeedle = needleNumber;
+            
+            // Visual feedback for needle selection
+            console.log('Needle selected:', needleNumber);
+            
+            // Regenerate pattern with new needle configuration
+            generatePattern();
+            updateSharedVariables();
+        }
+    </script>
+</body>
+</html>

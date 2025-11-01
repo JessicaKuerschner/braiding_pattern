@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our friend, MACHINE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            color: #333;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #F26E69;
+        }
+
+        /* Process Navigation */
+        .process-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .process-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            color: #F26E69;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px 60px 40px;
+        }
+
+        .machine-title h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 4em;
+            font-weight: 400;
+            color: #333;
+            line-height: 1.2;
+            margin-bottom: 60px;
+        }
+
+        h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2em;
+            color: #F26E69;
+            margin: 40px 0 20px 0;
+            font-weight: 400;
+        }
+
+        p {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        ul li {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.85em;
+        }
+
+        th {
+            background: rgba(242, 110, 105, 0.1);
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(250, 250, 250, 0.5);
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        .research-question {
+            font-style: italic;
+            padding: 20px;
+            background: rgba(242, 110, 105, 0.1);
+            border-radius: 3px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 80px 20px 40px 20px;
+            }
+
+            .machine-title h1 {
+                font-size: 2.5em;
+            }
+
+            table {
+                font-size: 0.75em;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-link">MACHINE</a>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <div class="machine-title">
+            <h1>Our friend,<br>MACHINE</h1>
+        </div>
+        <div class="content-section">
+            <p>Our project began with a desire to think about the future of industrial production. What once was a place of connection, where skilled artisans worked closely together to create handcrafted goods, now evolved into workers being replaceable parts in industrial systems, not seen for the human qualities are more and more isolated from each other.</p>
+            
+            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px; max-width: 350px;">
+                    <img src="images/papermaking.jpg" alt="Paper Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Paper Making</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; max-width: 350px;">
+                    <img src="images/shoemakers.jpg" alt="Shoemakers" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Shoemakers</p>
+                </div>
+            </div>
+            
+            <h3>Why Braiding?</h3>
+            <p>Even though in the past people were doing crafts together in the same space. Rope making traditionally was a form where several people simultaneously had to work on one rope together.</p>
+            
+            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                    <img src="images/weaving.jpg" alt="Weaving" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Weaving</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                    <img src="images/ropemaking.jpg" alt="Rope Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Rope Making</p>
+                </div>
+                <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                    <img src="images/spinning.jpg" alt="Spinning" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Spinning</p>
+                </div>
+            </div>
+            
+            <h3>Our Process</h3>
+            
+            <p><strong>Workshop:</strong> We found a link between maypole dancing and rope making. Because essentially you are making a rope (on top of a tree stem) through the dance. We tried out different forms: the tent maypole, single plait maypole, and full pleat maypole. We also practiced the Branle de l'Official, a folk dance.</p>
+            
+            <p><strong>Visit Factory:</strong> We explored the relationship between machine vs. worker, examining questions of agency. We observed the process from thread to rope. We saw how workers interact with machines—compared to other machines, workers are definitely needed for some tasks because they're so intricate.</p>
+            
+            <p><strong>Folk Dance:</strong> There are</p>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>First dance: very little body contact (just holding on one finger), dance in row so you can see everyone once</li>
+                <li>Second dance: choose randomly one partner that's next to you, but not too close body contact</li>
+                <li>Third dance: ask some partner to dance with you</li>
+            </ul>
+            
+            <h3>Research Question</h3>
+            <p style="font-style: italic; padding: 20px; background: rgba(242, 110, 105, 0.1); border-radius: 3px; margin: 30px 0;">How can braiding be reimagined as both a technological and social system, where new tools and community activation make production more accessible, creative, poetic and collaborative?</p>
+            
+            <h3>Machine Mechanism</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: rgba(242, 110, 105, 0.1);">
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Element</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Braiding Machine</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Social Dance</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Interdependence</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Each bobbin's movement depends on others</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Each person relies on the group</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Rhythm & Timing</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Mechanism needs precise, rhythmic motion</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Music and rhythm guide synchronized gestures</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Pattern Formation</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Crossing threads creates structured patterns</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">How people cross paths forms spatial and temporal patterns</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Tension</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Balanced tension between threads</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Spatial distance and connection between dancers</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Continuity</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Can operate continuously; starts/ends when worker chooses</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Can continue indefinitely; begins/ends when community decides</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Rules & Codes</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Mechanical constraints and physical laws</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Social codes of conduct and consent</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Spatial Organization</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Bobbins follow predetermined paths</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Dancers move in geometric patterns, choreographed yet improvised</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Embodied Knowledge</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Traditional craft techniques passed down</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Traditional steps, collective memory—a living archive</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Sound</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Mechanical noise, rhythmic patterns</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Music, footsteps, breath</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Interaction</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Worker responds to machine errors—relationship is responsive, not hierarchical</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">People respond to each other—relationship is responsive, not hierarchical</td>
+                </tr>
+            </table>
+            
+            <h3>Function: Physical Interaction, Digital Interaction, Collaboration Effect</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: rgba(242, 110, 105, 0.1);">
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Function</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Physical Interaction</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Digital Interaction</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Collaboration Effect</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Speed & Rhythm</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Physical participants move, step, tap in time using foot pedals, sensors, or motion tracking</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Online participants send rhythmic signals that merge with physical rhythm</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Creating a common tempo: physical and digital rhythms merge into shared timing</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Color Application</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Press color pads, apply pigment as threads move</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Select color palettes through digital interface</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Watch, wait, respond—coordination between physical and digital color choices</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Material Choice</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Change modular components (rings, spools, guides)—like changing dance partners</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Digital interface suggests new material combinations</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Digital input guides physical selection, creating dialogue</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Structure & Pattern</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Alter thread paths by repositioning components</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Propose pattern variations digitally</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Combined influence creates hybrid patterns—neither purely physical nor purely digital</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Feedback & Response</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">See, touch, hear the machine—direct sensory experience</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">View live visual data (speed, tension, sound frequency)</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Digital users interpret and respond to sensory feedback, creating continuous dialogue</td>
+                </tr>
+            </table>
+            
+            <h3>Website</h3>
+            <p>We want people to collaborate together across space, so the actions of on-site and online both influence each other and the outcome of the rope. Also, we want the process to be open-source, so we share all our process and how to build the machine on this website. The website should also explain our concept through its design.</p>
+            
+            <br>
+            <p><em>A collaborative project by Marion & Jess</em></p>
+        </div>
+    </div>
+</body>
+</html>

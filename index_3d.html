@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Documentation - Marion & Jess - 3D View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div class="sidebar sidebar-left">
+        <div class="info-panel" id="info-panel">
+            <div class="info-content" id="info-content">
+                <h3>Machine Controls</h3>
+                <p>Click on any pink circle to learn about the corresponding control options available in the interface panels.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <header class="reveal-element revealed" data-element="title">
+                <h1><a href="machine.html" class="machine-title-link">Our friend, 
+                    <br>MACHINE</a></h1>
+            </header>
+
+            <main id="content-container">
+                <!-- Week content moved to index2.html -->
+                <div class="machine-section revealed" data-element="machine" style="opacity: 1; transform: translateY(0);">
+                <!-- Horizontal Collaborative Machine Interface -->
+                <div class="machine-container" style="min-height: 500px;">
+                    <!-- Left Controls -->
+                    <div class="controls-left">
+                        <div class="control-panel">
+                            <h3>Digital Influence</h3>
+                            <div class="control-group digital-influence">
+                                <label>Speed Nudge <span class="influence-indicator">↗</span></label>
+                                <input type="range" id="speed" min="-3" max="3" value="0" step="0.5" oninput="updatePattern()">
+                                <span class="value" id="speed-value">0 RPM</span>
+                                <small>Influence physical pedal tempo</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Braiding Tension <span class="influence-indicator">⚡</span></label>
+                                <input type="range" id="colorDensity" min="0" max="100" value="50" oninput="updatePattern()">
+                                <span class="value" id="colorDensity-value">50%</span>
+                                <small>Spindle tension strength</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Content -->
+                    <div class="machine-center">
+                        <div class="system-status">
+                            <span class="machine-state" id="machine-state">● Machine Active</span>
+                            <span class="physical-users" id="physical-users">2 makers at installation</span>
+                            <span class="physical-users" id="digital-users">4 digital makers online</span>
+                        </div>
+                        
+                        <div class="pattern-generator" id="pattern-generator">
+                            <h4>Pattern Generator</h4>
+                            <canvas id="pattern-canvas" style="background: white;"></canvas>
+                        </div>
+                        
+                        <div class="machine-placeholder">
+                            <!-- 3D Model Container -->
+                            <div id="threejs-container" style="width: 100%; height: 400px; border-radius: 5px;"></div>
+                            <div class="circle-overlay">
+                                <div class="circle circle1" data-info="speed-nudge" onclick="showInfo('speed-nudge')"></div>
+                                <div class="circle circle2" data-info="braiding-tension" onclick="showInfo('braiding-tension')"></div>
+                                <div class="circle circle3" data-info="color-options" onclick="showInfo('color-options')"></div>
+                                <div class="circle circle4" data-info="preview-yarn" onclick="showInfo('preview-yarn')"></div>
+                                <div class="circle circle5" data-info="place-needles" onclick="showInfo('place-needles')"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Controls -->
+                    <div class="controls-right">
+                        <div class="control-panel">
+                            <h3>Material & Status</h3>
+                            <div class="control-group digital-influence">
+                                <label>Color Options <span class="influence-indicator">🎨</span></label>
+                                <div class="color-options">
+                                    <div class="color-swatch" data-color="#8B4513" style="background-color: #8B4513;" onclick="selectColor('#8B4513')"></div>
+                                    <div class="color-swatch" data-color="#F26E69" style="background-color: #F26E69;" onclick="selectColor('#F26E69')"></div>
+                                    <div class="color-swatch" data-color="#E818F2" style="background-color: #E818F2;" onclick="selectColor('#E818F2')"></div>
+                                    <div class="color-swatch" data-color="#4CAF50" style="background-color: #4CAF50;" onclick="selectColor('#4CAF50')"></div>
+                                    <div class="color-swatch" data-color="#2196F3" style="background-color: #2196F3;" onclick="selectColor('#2196F3')"></div>
+                                    <div class="color-swatch selected" data-color="#FF9800" style="background-color: #FF9800;" onclick="selectColor('#FF9800')"></div>
+                                </div>
+                                <small>Select color preference</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Preview Yarn <span class="influence-indicator">🧶</span></label>
+                                <select id="yarnMaterial" onchange="updateYarnPreview()">
+                                    <option value="cotton-thin">Cotton - Thin</option>
+                                    <option value="cotton-medium" selected>Cotton - Medium</option>
+                                    <option value="cotton-thick">Cotton - Thick</option>
+                                    <option value="wool-thin">Wool - Thin</option>
+                                    <option value="wool-medium">Wool - Medium</option>
+                                    <option value="wool-thick">Wool - Thick</option>
+                                    <option value="hemp-medium">Hemp - Medium</option>
+                                    <option value="silk-thin">Silk - Thin</option>
+                                </select>
+                                <small>Material and thickness</small>
+                            </div>
+                            <div class="control-group digital-influence">
+                                <label>Place Needles <span class="influence-indicator">📍</span></label>
+                                <div class="needle-options">
+                                    <button class="needle-btn active" data-needle="1" onclick="selectNeedle(1)">1</button>
+                                    <button class="needle-btn" data-needle="2" onclick="selectNeedle(2)">2</button>
+                                    <button class="needle-btn" data-needle="3" onclick="selectNeedle(3)">3</button>
+                                    <button class="needle-btn" data-needle="4" onclick="selectNeedle(4)">4</button>
+                                </div>
+                                <small>Needle configuration</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </main>
+    
+    <div class="sidebar sidebar-right">
+        <div class="nav-link">
+            <a href="index2.html">PROCESS</a>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let sharedVariables = {
+            digitalSpeedNudge: 0,
+            physicalBaseSpeed: 4.2,
+            colorIntensity: 50,
+            suggestedMaterial: '#FF9800',
+            actualMaterial: '#FF9800',
+            yarnType: 'cotton-medium',
+            selectedNeedle: 1,
+            interactionCycle: 'adaptation'
+        };
+        
+        let sensorData = {
+            speed: 4.2,
+            tension: 'medium',
+            colorApplied: true
+        };
+        
+        // Interaction cycles for the pattern generator
+        let interactionCycles = ['initiation', 'digital-intervention', 'adaptation', 'reflection'];
+        let currentCycleIndex = 2; // Start with 'adaptation'
+        
+        let canvas, ctx;
+        let scene, camera, renderer, controls, hornGear, guidingGear, track;
+        
+        // Initialize Three.js 3D viewer
+        function init3DViewer() {
+            const container = document.getElementById('threejs-container');
+            
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xfafafa);
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 80;
+            camera.position.y = 40;
+            camera.position.x = 40;
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(1, 1, 1);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight2.position.set(-1, -1, -1);
+            scene.add(directionalLight2);
+            
+            // Add orbit controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = true;
+            
+            // Load STL models
+            const loader = new THREE.STLLoader();
+            let modelsLoaded = 0;
+            const totalModels = 3;
+            
+            // Load Horn Gear
+            loader.load('files/Horngear.STL', function(geometry) {
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0xFF9800,
+                    specular: 0x111111,
+                    shininess: 200
+                });
+                
+                hornGear = new THREE.Mesh(geometry, material);
+                
+                // Center the geometry
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox.getCenter(center);
+                hornGear.geometry.translate(-center.x, -center.y, -center.z);
+                
+                // Position horn gear
+                hornGear.position.set(0, 0, 0);
+                
+                scene.add(hornGear);
+                modelsLoaded++;
+                if (modelsLoaded === totalModels) animate3D();
+            }, undefined, function(error) {
+                console.error('Error loading Horn Gear:', error);
+            });
+            
+            // Load Guiding Gear (converted from SLDPRT)
+            loader.load('files/GuidingGear.SLDPRT', function(geometry) {
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0xF26E69,
+                    specular: 0x111111,
+                    shininess: 200
+                });
+                
+                guidingGear = new THREE.Mesh(geometry, material);
+                
+                // Center the geometry
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox.getCenter(center);
+                guidingGear.geometry.translate(-center.x, -center.y, -center.z);
+                
+                // Position guiding gear to the side
+                guidingGear.position.set(25, 0, 0);
+                
+                scene.add(guidingGear);
+                modelsLoaded++;
+                if (modelsLoaded === totalModels) animate3D();
+            }, undefined, function(error) {
+                console.error('Error loading Guiding Gear (trying as STL):', error);
+                // GuidingGear.SLDPRT might not be directly loadable, skip it
+                modelsLoaded++;
+                if (modelsLoaded === totalModels) animate3D();
+            });
+            
+            // Load Track
+            loader.load('files/track.STL', function(geometry) {
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0x2196F3,
+                    specular: 0x111111,
+                    shininess: 200
+                });
+                
+                track = new THREE.Mesh(geometry, material);
+                
+                // Center the geometry
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox.getCenter(center);
+                track.geometry.translate(-center.x, -center.y, -center.z);
+                
+                // Position track below
+                track.position.set(0, -15, 0);
+                
+                scene.add(track);
+                modelsLoaded++;
+                if (modelsLoaded === totalModels) animate3D();
+            }, undefined, function(error) {
+                console.error('Error loading Track:', error);
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        
+        function onWindowResize() {
+            const container = document.getElementById('threejs-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+        
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            
+            // No automatic rotation - static models that can be rotated with mouse
+            
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        function initPatternGenerator() {
+            console.log('Initializing pattern generator...');
+            canvas = document.getElementById('pattern-canvas');
+            if (!canvas) {
+                console.error('Canvas element not found!');
+                return;
+            }
+            
+            ctx = canvas.getContext('2d');
+            if (!ctx) {
+                console.error('Canvas context not available!');
+                return;
+            }
+            
+            canvas.width = 600;
+            canvas.height = 300;
+            canvas.style.width = '100%';
+            canvas.style.height = '300px';
+            
+            console.log('Canvas initialized:', canvas.width, 'x', canvas.height);
+            
+            // Start continuous animation
+            function animate() {
+                generatePattern();
+                requestAnimationFrame(animate);
+            }
+            
+            animate(); // Start the animation loop
+        }
+        
+        function generatePattern() {
+            if (!canvas || !ctx) {
+                console.error('Canvas or context not available for pattern generation');
+                return;
+            }
+            
+            console.log('Generating complex animated pattern...');
+            
+            // Get collaborative system values
+            const digitalSpeedNudge = sharedVariables.digitalSpeedNudge || 0;
+            const actualSpeed = sensorData.speed || 50;
+            const colorIntensity = sharedVariables.colorIntensity || 50;
+            const selectedColor = sharedVariables.suggestedMaterial || '#E818F2';
+            const yarnType = sharedVariables.yarnType || 'cotton-medium';
+            const needleConfig = sharedVariables.selectedNeedle || 1;
+            const currentPhase = interactionCycles[currentCycleIndex] || 'initiation';
+            
+            // Extract material properties from yarn type
+            const materialType = yarnType.split('-')[0]; // cotton, wool, hemp, silk
+            const materialThickness = yarnType.includes('thin') ? 0.7 : 
+                                     yarnType.includes('thick') ? 1.4 : 1.0;
+            
+            // Clear canvas with subtle background
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Define spindles count for status display
+            const totalSpindles = 12; // Changed from 8 to 12 for more rope nodes
+            
+            // Draw status information with better styling
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.fillText(`Material: ${materialType.toUpperCase()}`, 10, 25);
+            ctx.font = '12px Arial';
+            ctx.fillText(`Spindles: ${totalSpindles}`, 10, 45);
+            ctx.fillText(`Needles: ${needleConfig}`, 10, 60);
+            ctx.fillText(`Speed: ${(actualSpeed + digitalSpeedNudge).toFixed(1)} RPM`, 10, 75);
+            ctx.fillText(`Intensity: ${colorIntensity}%`, 10, 90);
+            ctx.fillText(`Phase: ${currentPhase}`, 10, 105);
+            
+            // Draw color preview below all status text
+            ctx.fillStyle = selectedColor;
+            ctx.fillRect(10, 120, 80, 15);
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(10, 120, 80, 15);
+            
+            // Animate the rope braiding pattern
+            try {
+                drawComplexRopeBraidingPattern(selectedColor, materialType, materialThickness, needleConfig, digitalSpeedNudge, colorIntensity, currentPhase);
+            } catch (error) {
+                console.error('Error drawing complex rope pattern:', error);
+                ctx.fillStyle = '#ff0000';
+                ctx.fillText('Pattern Error: ' + error.message, 10, 130);
+            }
+        }
+        
+        function drawComplexRopeBraidingPattern(selectedColor, materialType, materialThickness, needleConfig, speedNudge, intensity, phase) {
+            const totalSpindles = 12; // Changed from 8 to 12 for more rope nodes
+            const spindleWidth = Math.max(30, (canvas.width - 200) / totalSpindles);
+            const rowHeight = 12 + (materialThickness * 4);
+            const totalRows = Math.floor((canvas.height - 150) / rowHeight);
+            
+            // Much slower base speed and more responsive to speed nudge
+            const baseSpeed = 0.0005; // Reduced from 0.002 for slower animation
+            const speedMultiplier = 1 + (speedNudge * 0.8); // Increased from 0.3 for more effect
+            const time = Date.now() * baseSpeed * speedMultiplier; // Speed nudge now properly affects animation
+            
+            // Phase-specific effects
+            let phaseColor = selectedColor;
+            let phaseIntensity = intensity / 100;
+            
+            switch(phase) {
+                case 'initiation':
+                    phaseIntensity *= 0.8;
+                    break;
+                case 'digital-intervention':
+                    phaseColor = '#E818F2'; // Digital pink
+                    phaseIntensity += Math.sin(time * 4) * 0.3;
+                    break;
+                case 'adaptation':
+                    phaseIntensity += Math.sin(time * 1.5) * 0.2;
+                    break;
+                case 'reflection':
+                    phaseIntensity *= 0.9;
+                    break;
+            }
+            
+            // Draw animated rows
+            for (let row = 0; row < Math.min(totalRows, 15); row++) {
+                const y = 140 + (row * rowHeight);
+                const rowTime = time + (row * 0.3);
+                const rowIntensity = Math.max(0.2, Math.min(1, phaseIntensity + Math.sin(rowTime) * 0.2));
+                
+                drawAnimatedRopeBraidingRow(row, y, rowHeight, spindleWidth, totalSpindles, 
+                                          rowTime, phaseColor, rowIntensity, materialType, materialThickness, phase);
+            }
+            
+            // Central braid removed per user request (turning element)
+            
+            // Draw needle holes based on needle configuration
+            drawNeedleHoles(needleConfig, time, totalRows, rowHeight);
+        }
+        
+        function drawAnimatedRopeBraidingRow(rowIndex, y, rowHeight, spindleWidth, totalSpindles, 
+                                           time, color, intensity, materialType, materialThickness, phase) {
+            const baseColor = hexToRgb(color);
+            
+            // Material-specific properties
+            const materialProperties = {
+                cotton: { roughness: 0.2, shine: 0.3, fuzziness: 0.1 },
+                wool: { roughness: 0.8, shine: 0.1, fuzziness: 0.9 },
+                hemp: { roughness: 0.7, shine: 0.2, fuzziness: 0.3 },
+                silk: { roughness: 0.1, shine: 0.9, fuzziness: 0.0 }
+            };
+            const matProps = materialProperties[materialType] || materialProperties.cotton;
+            
+            // Draw spindle positions with animation
+            for (let spindle = 0; spindle < totalSpindles; spindle++) {
+                const baseX = 120 + (spindle * spindleWidth);
+                
+                // Calculate complex braiding offset
+                const spindlePhase = (spindle / totalSpindles) * Math.PI * 2;
+                const primaryOffset = Math.sin(time + spindlePhase) * (spindleWidth * 0.6) * intensity;
+                const secondaryOffset = Math.cos(time * 1.5 + spindlePhase * 0.5) * (spindleWidth * 0.3) * intensity;
+                const x = baseX + primaryOffset + secondaryOffset;
+                
+                // Calculate strand properties
+                const strandIntensity = Math.max(0.3, Math.min(1, 
+                    intensity + Math.sin(spindle * 0.7 + time * 1.2) * 0.3));
+                const strandWidth = (2 + strandIntensity * 3) * materialThickness;
+                
+                // Draw rope strand with material effects
+                drawAnimatedRopeStrand(x, y, rowHeight, strandWidth, strandIntensity, color, 
+                                     materialType, matProps, phase, time + spindlePhase);
+                
+                // Draw braiding connections
+                if (spindle < totalSpindles - 1) {
+                    const nextSpindle = spindle + 1;
+                    const nextBaseX = 120 + (nextSpindle * spindleWidth);
+                    const nextSpindlePhase = (nextSpindle / totalSpindles) * Math.PI * 2;
+                    const nextPrimaryOffset = Math.sin(time + nextSpindlePhase) * (spindleWidth * 0.6) * intensity;
+                    const nextSecondaryOffset = Math.cos(time * 1.5 + nextSpindlePhase * 0.5) * (spindleWidth * 0.3) * intensity;
+                    const nextX = nextBaseX + nextPrimaryOffset + nextSecondaryOffset;
+                    
+                    drawBraidConnection(x, nextX, y, rowHeight, strandIntensity, color, phase, materialThickness, time);
+                }
+            }
+        }
+        
+        function drawAnimatedRopeStrand(x, y, height, width, intensity, color, materialType, matProps, phase, time) {
+            const baseColor = hexToRgb(color);
+            
+            // Create gradient for depth
+            const gradient = ctx.createRadialGradient(x, y + height/2, 0, x, y + height/2, width);
+            
+            // Material-specific coloring
+            let highlightColor, shadowColor;
+            switch(materialType) {
+                case 'silk':
+                    highlightColor = `rgba(${baseColor.r + 40}, ${baseColor.g + 40}, ${baseColor.b + 40}, ${0.9 * intensity})`;
+                    shadowColor = `rgba(${Math.max(0, baseColor.r - 20)}, ${Math.max(0, baseColor.g - 20)}, ${Math.max(0, baseColor.b - 20)}, ${0.7 * intensity})`;
+                    break;
+                case 'wool':
+                    highlightColor = `rgba(${baseColor.r + 20}, ${baseColor.g + 20}, ${baseColor.b + 20}, ${0.6 * intensity})`;
+                    shadowColor = `rgba(${Math.max(0, baseColor.r - 30)}, ${Math.max(0, baseColor.g - 30)}, ${Math.max(0, baseColor.b - 30)}, ${0.8 * intensity})`;
+                    break;
+                default:
+                    highlightColor = `rgba(${baseColor.r + 30}, ${baseColor.g + 30}, ${baseColor.b + 30}, ${0.8 * intensity})`;
+                    shadowColor = `rgba(${Math.max(0, baseColor.r - 15)}, ${Math.max(0, baseColor.g - 15)}, ${Math.max(0, baseColor.b - 15)}, ${0.7 * intensity})`;
+            }
+            
+            gradient.addColorStop(0, highlightColor);
+            gradient.addColorStop(0.7, color);
+            gradient.addColorStop(1, shadowColor);
+            
+            // Draw animated strand
+            ctx.fillStyle = gradient;
+            ctx.globalAlpha = 0.7 + (intensity * 0.3);
+            
+            // Add twist animation for rope effect
+            const twistOffset = Math.sin(time * 3) * (width * 0.3);
+            
+            ctx.beginPath();
+            ctx.ellipse(x + twistOffset, y + height/2, width/2, height/3, time * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add material texture
+            if (materialType === 'wool') {
+                // Fuzzy texture for wool
+                ctx.globalAlpha = 0.3;
+                for (let i = 0; i < 3; i++) {
+                    const fuzzX = x + (Math.random() - 0.5) * width;
+                    const fuzzY = y + (Math.random() * height);
+                    ctx.beginPath();
+                    ctx.arc(fuzzX, fuzzY, 1, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function drawBraidConnection(x1, x2, y, height, intensity, color, phase, thickness, time) {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = (1 + intensity * 2) * thickness;
+            ctx.globalAlpha = 0.6 + (intensity * 0.4);
+            
+            // Animated curve for braiding
+            const controlY = y + height/2 + Math.sin(time * 2) * (height * 0.3);
+            const controlX = (x1 + x2) / 2 + Math.cos(time * 1.5) * 10;
+            
+            ctx.beginPath();
+            ctx.moveTo(x1, y + height/3);
+            ctx.quadraticCurveTo(controlX, controlY, x2, y + height/3);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1;
+        }
+        
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : {r: 232, g: 24, b: 242};
+        }
+        
+        function drawNeedleHoles(needleCount, time, totalRows, rowHeight) {
+            // Create holes in the pattern based on number of needles
+            const holeRadius = 8;
+            const patternWidth = canvas.width - 240; // Available width for pattern
+            const patternStartX = 120;
+            
+            // Calculate hole positions - evenly spaced across the pattern width
+            const holeSpacing = patternWidth / (needleCount + 1);
+            
+            for (let needle = 0; needle < needleCount; needle++) {
+                const baseX = patternStartX + (needle + 1) * holeSpacing;
+                
+                // Create holes throughout the pattern height
+                for (let row = 0; row < Math.min(totalRows, 15); row++) {
+                    const y = 140 + (row * rowHeight) + (rowHeight / 2);
+                    
+                    // Add slight animation to hole positions
+                    const holeTime = time + (needle * 0.5) + (row * 0.2);
+                    const xOffset = Math.sin(holeTime) * 3;
+                    const x = baseX + xOffset;
+                    
+                    // Draw hole (dark circle with lighter border)
+                    ctx.globalAlpha = 0.8;
+                    
+                    // Dark inner hole
+                    ctx.fillStyle = '#333333';
+                    ctx.beginPath();
+                    ctx.arc(x, y, holeRadius * 0.7, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Lighter border to show hole depth
+                    ctx.strokeStyle = '#666666';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(x, y, holeRadius, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    ctx.globalAlpha = 1;
+                }
+            }
+        }
+        
+        function updatePattern() {
+            const speedNudge = parseFloat(document.getElementById('speed').value);
+            const colorDensity = parseFloat(document.getElementById('colorDensity').value);
+            
+            sharedVariables.digitalSpeedNudge = speedNudge;
+            sharedVariables.colorIntensity = colorDensity;
+            
+            document.getElementById('speed-value').textContent = (speedNudge >= 0 ? '+' : '') + speedNudge + ' RPM';
+            document.getElementById('colorDensity-value').textContent = colorDensity + '%';
+            
+            generatePattern();
+        }
+        
+        function selectColor(color) {
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.classList.remove('selected');
+            });
+            document.querySelector(`[data-color="${color}"]`).classList.add('selected');
+            
+            sharedVariables.suggestedMaterial = color;
+            sharedVariables.actualMaterial = color;
+            
+            // Update 3D model colors
+            if (hornGear) {
+                hornGear.material.color.setStyle(color);
+            }
+            if (guidingGear) {
+                guidingGear.material.color.setStyle(color);
+            }
+            if (track) {
+                track.material.color.setStyle(color);
+            }
+            
+            generatePattern();
+        }
+        
+        function updateYarnPreview() {
+            const yarnSelect = document.getElementById('yarnMaterial');
+            sharedVariables.yarnType = yarnSelect.value;
+            generatePattern();
+        }
+        
+        function selectNeedle(needleNumber) {
+            document.querySelectorAll('.needle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-needle="${needleNumber}"]`).classList.add('active');
+            
+            sharedVariables.selectedNeedle = needleNumber;
+            generatePattern();
+        }
+        
+        function showInfo(infoType) {
+            const infoContent = document.getElementById('info-content');
+            const infoData = {
+                'speed-nudge': {
+                    title: 'Speed Nudge',
+                    content: 'Digital control to influence the physical pedal tempo. Adjust this to speed up or slow down the machine\'s braiding rhythm in real-time. Also affects the 3D gear rotation speed.'
+                },
+                'braiding-tension': {
+                    title: 'Braiding Tension',
+                    content: 'Controls the spindle tension strength. Higher values create tighter braids while lower values produce looser, more flowing patterns.'
+                },
+                'color-options': {
+                    title: 'Color Options',
+                    content: 'Choose the color palette for your rope braiding. Each color selection immediately influences the visual appearance of the pattern generator and the 3D horn gear.'
+                },
+                'preview-yarn': {
+                    title: 'Preview Yarn',
+                    content: 'Select different yarn materials and thickness options. Material choice affects the texture and visual properties of the braided pattern.'
+                },
+                'place-needles': {
+                    title: 'Place Needles',
+                    content: 'Configure the number of needles by placing them. More needles create more complex braiding patterns with additional strands and holes.'
+                }
+            };
+            
+            const info = infoData[infoType];
+            if (info) {
+                infoContent.innerHTML = `<h3>${info.title}</h3><p>${info.content}</p>`;
+            }
+        }
+        
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            setTimeout(() => {
+                initPatternGenerator();
+                init3DViewer();
+            }, 100);
+        });
+        
+        // Backup initialization
+        if (document.readyState !== 'loading') {
+            console.log('DOM already loaded...');
+            setTimeout(() => {
+                initPatternGenerator();
+                init3DViewer();
+            }, 100);
+        }
+    </script>
+</body>
+</html>
