@@ -42,7 +42,10 @@
             <span class="week-name">DOCUMENTATION & PRESENTATION</span>
         </div>
         <div class="week-item" data-week="week8">
-            <span class="week-name">FINAL INTEGRATION</span>
+            <span class="week-name">DUTCH DESIGN WEEK INTEGRATION</span>
+        </div>
+        <div class="week-item" data-week="week9">
+            <span class="week-name">SOCIAL DANCE & DIGITAL INTEGRATION</span>
         </div>
     </div>
     
@@ -59,103 +62,103 @@
         <!-- Week 1 Tools & Setup -->
         <div class="node setup-node docs-node" data-node="docs" data-connects="central,abstract">
             <div class="node-content">
-                <h3>Google Docs</h3>
+                <h3>Collaborative Writing</h3>
             </div>
         </div>
 
         <div class="node setup-node zotero-node" data-node="zotero" data-connects="central,reenchantment,community">
             <div class="node-content">
-                <h3>Zotero</h3>
+                <h3>Research Sources</h3>
             </div>
         </div>
 
         <div class="node setup-node figma-node" data-node="figma" data-connects="central,mindmap">
             <div class="node-content">
-                <h3>Figma</h3>
+                <h3>Design Layouts</h3>
             </div>
         </div>
 
         <!-- Research Questions -->
         <div class="node research-node marion-research-node" data-node="reenchantment" data-connects="zotero,rope,mechanism">
             <div class="node-content">
-                <h3>Reenchantment</h3>
+                <h3>Research Questions</h3>
             </div>
         </div>
 
         <div class="node research-node jess-research-node" data-node="community" data-connects="zotero,rope,textile">
             <div class="node-content">
-                <h3>Community Power</h3>
+                <h3>Material Objectives</h3>
             </div>
         </div>
 
         <!-- Material Focus -->
         <div class="node material-node rope-node" data-node="rope" data-connects="central,companies">
             <div class="node-content">
-                <h3>Rope</h3>
+                <h3>Rope Making</h3>
             </div>
         </div>
 
         <!-- Week 2 Making Activities -->
         <div class="node making-node braiding-machine-node" data-node="mechanism" data-connects="reenchantment,motor,texmind">
             <div class="node-content">
-                <h3>3D Printed Machine</h3>
+                <h3>Printing Components</h3>
             </div>
         </div>
 
         <div class="node making-node textile-experiments-node" data-node="textile" data-connects="community,maypole">
             <div class="node-content">
-                <h3>Textile Experiments</h3>
+                <h3>Braiding Techniques</h3>
             </div>
         </div>
 
         <div class="node making-node motor-node" data-node="motor" data-connects="mechanism">
             <div class="node-content">
-                <h3>Motor from Emmaus</h3>
+                <h3>Component Testing</h3>
             </div>
         </div>
 
         <!-- Software & Tools -->
         <div class="node software-node texmind-node" data-node="texmind" data-connects="mechanism,automation">
             <div class="node-content">
-                <h3>Texmind Software</h3>
+                <h3>Sponsorship</h3>
             </div>
         </div>
 
         <div class="node software-node herzog-node" data-node="automation" data-connects="texmind">
             <div class="node-content">
-                <h3>Herzog System</h3>
+                <h3>Corbeo Contact</h3>
             </div>
         </div>
 
         <!-- Community Connections -->
         <div class="node community-node maypole-node" data-node="maypole" data-connects="textile,gabriel">
             <div class="node-content">
-                <h3>Maypole Tradition</h3>
+                <h3>Maypole Workshop</h3>
             </div>
         </div>
 
         <div class="node community-node gabriel-node" data-node="gabriel" data-connects="maypole">
             <div class="node-content">
-                <h3>Gabriel Fontana</h3>
+                <h3>Pattern Formation</h3>
             </div>
         </div>
 
         <div class="node community-node rope-companies-node" data-node="companies" data-connects="rope">
             <div class="node-content">
-                <h3>Rope Companies</h3>
+                <h3>Factory Visit</h3>
             </div>
         </div>
 
         <!-- Research Outputs -->
         <div class="node output-node mindmap-node" data-node="mindmap" data-connects="abstract,figma">
             <div class="node-content">
-                <h3>Research Mindmap</h3>
+                <h3>Shared Mindmap</h3>
             </div>
         </div>
 
         <div class="node output-node abstract-node" data-node="abstract" data-connects="docs">
             <div class="node-content">
-                <h3>Updated Abstract</h3>
+                <h3>Dance Schematics</h3>
             </div>
         </div>
 
@@ -275,121 +278,70 @@
             // Week content data
             const weekContent = {
                 week1: {
-                    title: "WEEK 1: SETTING UP",
+                    title: "WEEK 1: ORGANIZATIONAL GROUNDWORK",
                     content: `
-                        <h3>Initial Setup and Tool Configuration</h3>
-                        <p>This week focused on establishing the foundational tools and workspace for our graduation project collaboration.</p>
-                        
-                        <h4>Tools Set Up:</h4>
-                        <ul>
-                            <li><strong>Google Docs:</strong> Collaborative writing and documentation</li>
-                            <li><strong>Zotero:</strong> Research management and bibliography</li>
-                            <li><strong>Figma:</strong> Visual design and mindmapping</li>
-                        </ul>
-                        
-                        <h4>Research Foundation:</h4>
-                        <p>We began establishing our research questions around <strong>reenchantment</strong> (Marion's focus) and <strong>community power</strong> (Jess's focus), with rope as our central material exploration.</p>
+                        <h3>Organizational Groundwork</h3>
+                        <p>In the first week, we established the organizational structure for the project. Google Docs was used for collaborative writing, Zotero for compiling and referencing research sources, and Figma for testing website and design layouts before coding. We created a shared mindmap to organize key concepts, linking research on rope-making, community practices, and industrial labor to our project focus. This groundwork also helped define individual research questions and clarify material experimentation objectives.</p>
                     `
                 },
                 week2: {
-                    title: "WEEK 2: BRAIDING MACHINE & EXPERIMENTS",
+                    title: "WEEK 2: PRINTING & MATERIAL EXPLORATION",
                     content: `
-                        <h3>Machine Development and Material Exploration</h3>
-                        <p>This week involved hands-on making and experimentation with both digital and physical tools.</p>
-                        
-                        <h4>Making Activities:</h4>
-                        <ul>
-                            <li><strong>3D Printed Machine:</strong> Development of braiding mechanism</li>
-                            <li><strong>Motor Integration:</strong> Sourced motor from Emmaus for automation</li>
-                            <li><strong>Textile Experiments:</strong> Initial material testing and pattern exploration</li>
-                        </ul>
-                        
-                        <h4>Software Integration:</h4>
-                        <p>We explored <strong>Texmind Software</strong> and the <strong>Herzog System</strong> for pattern generation and automation possibilities.</p>
+                        <h3>Printing & Material Exploration</h3>
+                        <p>Work began on printing components for an open-source 3D braiding machine. While printing took longer than expected, the process allowed us to test initial parts and identify necessary adjustments. Concurrently, sponsorship requests were sent to Corbeo to support future factory visits. I also conducted preliminary textile experiments with rope, exploring basic braiding techniques, volumetric forms through tying, and weaving-like structures to understand the material's possibilities.</p>
                     `
                 },
                 week3: {
-                    title: "WEEK 3: MATERIAL TESTING & ANALYSIS",
+                    title: "WEEK 3: MAYPOLE WORKSHOP PREPARATION",
                     content: `
-                        <h3>Deep Dive into Material Properties</h3>
-                        <p>Focused analysis of rope characteristics and their implications for both mechanical and conceptual work.</p>
-                        
-                        <h4>Material Research:</h4>
-                        <ul>
-                            <li>Rope company outreach and material sourcing</li>
-                            <li>Tensile strength and flexibility testing</li>
-                            <li>Cultural and historical context of rope in community practices</li>
-                        </ul>
+                        <h3>Maypole Workshop Preparation</h3>
+                        <p>Preparation for a Maypole workshop included designing structural supports and applying textiles to poles. Participants were organized, and research into Maypole traditions and dances was conducted to understand the social and communal aspects of the practice. The research focus and graduation plan were updated based on insights gained, including potential links between physical interaction, pattern formation, and collective participation.</p>
                     `
                 },
                 week4: {
-                    title: "WEEK 4: PATTERN DEVELOPMENT",
+                    title: "WEEK 4: CONNECTING THROUGH SEAMS",
                     content: `
-                        <h3>Systematic Pattern Creation</h3>
-                        <p>Development of repeatable patterns and documentation of making processes.</p>
-                        
-                        <h4>Pattern Work:</h4>
-                        <ul>
-                            <li>Braiding pattern documentation</li>
-                            <li>Variation testing and cataloging</li>
-                            <li>Integration with maypole traditions research</li>
-                        </ul>
+                        <h3>Connecting Through Seams</h3>
+                        <p>During the "Connecting Through Seams" workshop at Het Nieuwe Instituut, we explored the interaction of movement, pattern, and collaboration through Maypole dancing. Schematics of the dances were documented, and participants engaged in structured exercises that revealed how rhythm and repetition shape group behavior and social coordination.</p>
                     `
                 },
                 week5: {
-                    title: "WEEK 5: PROTOTYPE CREATION",
+                    title: "WEEK 5: CORBEO FACTORY VISIT",
                     content: `
-                        <h3>Working Prototype Development</h3>
-                        <p>Creation of functional prototypes incorporating both mechanical and community aspects.</p>
-                        
-                        <h4>Prototype Features:</h4>
-                        <ul>
-                            <li>Automated braiding mechanism</li>
-                            <li>Community interaction elements</li>
-                            <li>Documentation of making process</li>
-                        </ul>
+                        <h3>Corbeo Factory Visit</h3>
+                        <p>We visited the Corbeo rope factory in Belgium. On the production floor, few human operators are required, as most processes are automated. However, in the rope braiding section, human intervention remains critical. One operator manages multiple machines—winding, unwinding, and braiding—and performs precise tasks such as tying old yarns to new ones, cutting yarn from spools, and integrating new threads into the rope. An engineer explained the mechanical functions of the machines and how rope-making techniques have evolved across three generations.</p>
                     `
                 },
                 week6: {
-                    title: "WEEK 6: TESTING & REFINEMENT",
+                    title: "WEEK 6: SOCIAL OBSERVATION & EXPERIMENTATION",
                     content: `
-                        <h3>User Testing and System Refinement</h3>
-                        <p>Testing prototypes with community members and refining based on feedback.</p>
+                        <h3>Social Observation & Experimentation</h3>
+                        <p>This week focused on observing social interaction and material experimentation. At the Tilburg Textile Museum, we explored ways to present rope-making techniques in a simple and accessible manner. The goal was to create an inviting experience where visitors could understand and engage with the material, potentially taking something home. Techniques such as "Vlechten," "Gimpen," and "Koorddraien" were showcased, highlighting different volumes, forms, and possibilities for hollow or split structures. The installation was designed to be movable and interactive, functioning both as an archive of past work and as a platform for experimentation.</p>
                         
-                        <h4>Testing Areas:</h4>
-                        <ul>
-                            <li>Mechanical functionality and reliability</li>
-                            <li>User experience and accessibility</li>
-                            <li>Community engagement effectiveness</li>
-                        </ul>
+                        <p>We also conducted a Maypole workshop to test community-driven patterns and structures. We experimented with horizontal and multiple poles, and different rope thicknesses to explore architectural and spatial possibilities. The activity emphasized collaboration, as participants collectively shaped patterns and volumes. Observations included how color and material choices could reflect individual contributions, how movement and timing affected pattern formation, and how structured interaction can generate social cohesion.</p>
+                        
+                        <p>Additionally, we attended a Balfolk dance session at Café Wilhelmina in Eindhoven to observe structured social interaction through rhythm and shared etiquette. Some dances were calm and slow, while others were faster and more energetic. This provided insight into how structured movement and rhythm can foster connection among participants and inform the design of interactive systems.</p>
                     `
                 },
                 week7: {
-                    title: "WEEK 7: DOCUMENTATION & PRESENTATION",
+                    title: "WEEK 7: MACHINE DEVELOPMENT",
                     content: `
-                        <h3>Project Documentation and Presentation Preparation</h3>
-                        <p>Comprehensive documentation of process, outcomes, and learnings.</p>
-                        
-                        <h4>Documentation:</h4>
-                        <ul>
-                            <li>Process documentation and reflection</li>
-                            <li>Video documentation of making and community interaction</li>
-                            <li>Written analysis connecting theory and practice</li>
-                        </ul>
+                        <h3>Machine Development</h3>
+                        <p>This week focused on machine development. Parts for the braiding machine were ordered, and a CNC machine was requested to facilitate precise manufacturing. A component was constructed using a combination of wood and 3D printing to test mechanical movement and feasibility. The emphasis was on integrating digital modeling with physical fabrication to refine the machine's functionality.</p>
                     `
                 },
                 week8: {
-                    title: "WEEK 8: FINAL INTEGRATION",
+                    title: "WEEK 8: DUTCH DESIGN WEEK INTEGRATION",
                     content: `
-                        <h3>Project Integration and Conclusion</h3>
-                        <p>Final integration of all elements and preparation for graduation presentation.</p>
-                        
-                        <h4>Integration:</h4>
-                        <ul>
-                            <li>Final prototype refinements</li>
-                            <li>Presentation material preparation</li>
-                            <li>Reflection on collaboration and outcomes</li>
-                        </ul>
+                        <h3>Dutch Design Week Integration</h3>
+                        <p>During Dutch Design Week, multiple project elements were developed in parallel. We created a mechanism for connecting rings in the machine and built an interactive website featuring a pattern-maker tool. Documentation of user interaction scenarios was developed, including how physical and digital actions could influence outcomes. Existing machines were analyzed to identify unnecessary complexity and inform simplifications. A first video documenting the mid-term presentation was produced, sponsorship from Gimmex was secured, and the initial switchcam and spools were assembled.</p>
+                    `
+                },
+                week9: {
+                    title: "WEEK 9: SOCIAL DANCE & DIGITAL INTEGRATION",
+                    content: `
+                        <h3>Social Dance & Digital Integration</h3>
+                        <p>We focused on integrating social dance insights with digital interaction through the website. Feedback from advisors informed revisions to both the coding and physical mechanisms. A CNC component was tested on the machine, and a rotating attachment for lampposts was constructed from metal. Preparations for the mid-term presentation included organizing documentation, refining demonstration materials, and reviewing interaction scenarios for both physical and online users.</p>
                     `
                 }
             };
@@ -609,132 +561,23 @@
             }
             
             updateImageFilters() {
-                const images = document.querySelectorAll('.mindmap-image');
-                const userCount = this.users.length;
-                
-                // Remove existing overlays
-                document.querySelectorAll('.color-overlay').forEach(overlay => overlay.remove());
-                
-                // Apply filters based on user colors
-                images.forEach((img) => {
-                    // Reset styles
-                    img.style.filter = '';
-                    img.style.boxShadow = '';
-                    
-                    if (userCount === 0) {
-                        // No users - completely dark
-                        img.style.filter = 'brightness(0.1) saturate(0%)';
-                        return;
-                    }
-                    
-                    // Create a combined filter that reveals more as users join
-                    const brightness = Math.min(0.3 + (userCount * 0.1), 1.0);
-                    const saturation = Math.min(20 + (userCount * 15), 100);
-                    const contrast = Math.max(200 - (userCount * 10), 100);
-                    
-                    // Use the primary user's color as the main hue shift
-                    const primaryUser = this.users[0];
-                    let hueShift = 0;
-                    
-                    if (primaryUser) {
-                        // Convert user's hue to a filter effect
-                        hueShift = this.getHueShiftForColor(primaryUser.color.hue);
-                    }
-                    
-                    // Apply the combined filter
-                    img.style.filter = `
-                        brightness(${brightness})
-                        contrast(${contrast}%)
-                        saturate(${saturation}%)
-                        hue-rotate(${hueShift}deg)
-                        sepia(${Math.max(0.6 - (userCount * 0.1), 0)})
-                    `;
-                    
-                    // Add current user glow
-                    const currentUser = this.users.find(u => u.isCurrentUser);
-                    if (currentUser) {
-                        const glowColor = this.getColorFromHue(currentUser.color.hue);
-                        img.style.boxShadow = `0 0 8px ${glowColor}`;
-                    }
-                    
-                    // For multiple users, create multiple copies with different color filters
-                    if (userCount > 1) {
-                        this.createMultiUserOverlays(img.parentElement, img);
-                    }
-                });
+                // Image filters removed - images display normally in grayscale via CSS
             }
             
             createMultiUserOverlays(imageElement, originalImg) {
-                // Create additional image copies with different color filters for each user
-                this.users.forEach((user, index) => {
-                    if (index === 0) return; // Skip first user (already applied to main image)
-                    
-                    const overlay = document.createElement('img');
-                    overlay.src = originalImg.src;
-                    overlay.className = 'color-overlay mindmap-image';
-                    overlay.style.position = 'absolute';
-                    overlay.style.top = '0';
-                    overlay.style.left = '0';
-                    overlay.style.width = '100%';
-                    overlay.style.height = '100%';
-                    overlay.style.objectFit = 'cover';
-                    overlay.style.borderRadius = '5px';
-                    overlay.style.pointerEvents = 'none';
-                    overlay.style.mixBlendMode = 'screen';
-                    overlay.style.opacity = '0.7';
-                    
-                    // Apply user-specific color filter
-                    const hueShift = this.getHueShiftForColor(user.color.hue);
-                    const userBrightness = 0.4;
-                    const userSaturation = 80;
-                    
-                    overlay.style.filter = `
-                        brightness(${userBrightness})
-                        contrast(150%)
-                        saturate(${userSaturation}%)
-                        hue-rotate(${hueShift}deg)
-                        sepia(0.3)
-                    `;
-                    
-                    imageElement.appendChild(overlay);
-                });
+                // Multi-user overlay feature removed
             }
             
             getHueShiftForColor(userHue) {
-                // Convert user hue to filter hue-rotate value
-                // This shifts the image colors to emphasize the user's assigned color
-                return userHue - 180; // Offset to make colors more distinguishable
+                return 0;
             }
             
             createColorMasks() {
-                // This will be handled through CSS filter combinations
-                // Each user reveals specific color ranges across all images
+                // Color mask feature removed
             }
             
             getCombinedColorFilter() {
-                const userCount = this.users.length;
-                
-                if (userCount === 0) {
-                    return 'brightness(0.1) saturate(0%) contrast(300%)';
-                }
-                
-                // Get the hue values of all current users
-                const userHues = this.users.map(user => user.color.hue);
-                
-                // Base visibility increases with more users
-                const brightness = Math.min(0.2 + (userCount * 0.12), 1.0);
-                const contrast = Math.max(200 - (userCount * 15), 100);
-                const saturation = Math.min(30 + (userCount * 20), 120);
-                
-                // For simplicity, we'll use a combined filter that becomes more permissive
-                // In a real implementation, you could use multiple overlays with different hue-rotate values
-                let combinedFilter = `brightness(${brightness}) contrast(${contrast}%) saturate(${saturation}%)`;
-                
-                // Add a slight hue shift based on the primary user's color
-                if (userCount > 0) {
-                    const primaryHue = userHues[0]; // Use first user's hue as base
-                    combinedFilter += ` hue-rotate(${primaryHue * 0.3}deg)`;
-                }
+                return '';
                 
                 // Add sepia effect that decreases with more users (simulating color revelation)
                 const sepiaAmount = Math.max(0.8 - (userCount * 0.15), 0);
@@ -775,20 +618,7 @@
             
             showUserInfo() {
                 // Create or update user info display
-                let userInfo = document.getElementById('user-info');
-                if (!userInfo) {
-                    userInfo = document.createElement('div');
-                    userInfo.id = 'user-info';
-                    userInfo.className = 'user-info';
-                    document.body.appendChild(userInfo);
-                }
-                
-                const currentUser = this.users.find(u => u.isCurrentUser);
-                userInfo.innerHTML = `
-                    <div class="user-count">${this.users.length} USERS ONLINE</div>
-                    <div class="user-color">YOUR COLOR: ${currentUser ? currentUser.color.name.toUpperCase() : 'NONE'}</div>
-                    <div class="visibility-info">VISIBILITY: ${Math.round((this.users.length / 12) * 100)}%</div>
-                `;
+                // User info display removed
             }
         }
         

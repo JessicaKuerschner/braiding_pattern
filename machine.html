@@ -80,7 +80,8 @@
             font-size: 1.2em;
             color: #F26E69;
             margin: 40px 0 20px 0;
-            font-weight: 400;
+            font-weight: 700;
+            text-align: center;
         }
 
         p {
@@ -107,7 +108,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 30px 0;
-            font-size: 0.85em;
+            font-size: 0.9em;
         }
 
         th {
@@ -134,6 +135,20 @@
 
         em {
             font-style: italic;
+        }
+
+        .inline-link {
+            color: #333;
+            text-decoration: underline;
+            text-decoration-color: rgba(242, 110, 105, 0.3);
+            text-decoration-thickness: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .inline-link:hover {
+            color: #FF1493;
+            text-decoration-color: #FF1493;
+            text-decoration-thickness: 3px;
         }
 
         .research-question {
@@ -178,21 +193,22 @@
             }
 
             table {
-                font-size: 0.6em;
+                font-size: 0.55em;
                 display: table;
                 width: 100%;
             }
 
             th, td {
-                padding: 6px 4px;
+                padding: 5px 3px;
                 word-wrap: break-word;
                 white-space: normal;
                 vertical-align: top;
                 line-height: 1.4;
+                font-size: 1em;
             }
 
             th {
-                font-size: 0.9em;
+                font-size: 0.95em;
             }
 
             img {
@@ -201,12 +217,25 @@
             }
 
             div[style*="flex: 0 0 280px"] {
-                flex: 0 0 calc(50% - 10px) !important;
-                max-width: calc(50% - 10px);
+                flex: 0 0 calc(50% - 5px) !important;
+                max-width: calc(50% - 5px);
+                height: auto !important;
             }
 
             div[style*="display: flex"][style*="gap: 20px"] {
                 gap: 10px !important;
+            }
+
+            div[style*="flex: 0 0 280px"] img {
+                height: 120px !important;
+                width: 100% !important;
+                object-fit: contain !important;
+            }
+
+            .tent-caption {
+                margin: 0 !important;
+                padding: 0 !important;
+                line-height: 1.2 !important;
             }
 
             p, ul, li {
@@ -215,6 +244,15 @@
 
             h3 {
                 font-size: 1.1em;
+            }
+
+            .luddites-img {
+                width: 180px !important;
+                height: auto !important;
+            }
+
+            div[style*="flex: 0 0 280px"] img[alt="Rope Making"] {
+                height: 200px !important;
             }
         }
     </style>
@@ -231,59 +269,82 @@
             <h1>Our friend,<br>MACHINE</h1>
         </div>
         <div class="content-section">
-            <p>Our project began with a desire to think about the future of industrial production. What once was a place of connection, where skilled artisans worked closely together to create handcrafted goods, now evolved into workers being replaceable parts in industrial systems, not seen for the human qualities are more and more isolated from each other.</p>
+            <p>Between 1811 and 1812, these workers rose up — with an intensity far beyond that of the Robin Hood legends. Their attacks were coordinated, disciplined, and effective. Entire networks of support shielded them for months, despite police spies, informants, and military repression. The government deployed more soldiers to suppress them than were fighting Napoleon at the time. The <a href="https://www.radiofrance.fr/franceinter/podcasts/en-quete-de-politique/en-quete-de-politique-du-samedi-10-septembre-2022-4818512" target="_blank" class="inline-link">Luddites</a> were not only seen as a threat to public order — they were perceived as a <strong>threat to industrial progress itself</strong>. Their struggle questioned the moral legitimacy of a new economic order in which capital determined all, and where ancient communal rights could simply be erased. Industrialism, he argues, is inseparable from the <strong>extraction of resources, the dispossession of common lands, and the loss of autonomy</strong> among agricultural and craft communities.</p>
             
-            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center;">
-                <div style="flex: 0 0 280px;">
-                    <img src="images/papermaking.jpg" alt="Paper Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
-                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Paper Making</p>
-                </div>
-                <div style="flex: 0 0 280px;">
-                    <img src="images/shoemakers.jpg" alt="Shoemakers" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
-                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Shoemakers</p>
-                </div>
+            <p>For a long time, machine-breaking was dismissed as irrational, backward, or anti-progress. Marx himself viewed the Luddites as politically naive, unable to distinguish between the machine as an object and the capitalist system that controlled it. But this view misses something essential. <strong>The Luddites did not reject technology. They rejected a technology that destroys skill, autonomy, and meaning in work.</strong> The shift from handcraft to machinery was not simply a matter of efficiency — it was a cultural and political transformation. The machine did not support the worker; the worker now served the machine.</p>
+            
+            <div style="margin: 30px 0; text-align: center;">
+                <img src="images/poster_luddites.jpg" alt="Luddites" class="luddites-img" style="width: 150px; height: auto; border-radius: 3px; filter: grayscale(100%);">
             </div>
             
-            <h3>Why Braiding?</h3>
-            <p>Even though in the past people were doing crafts together in the same space. Rope making traditionally was a form where several people simultaneously had to work on one rope together.</p>
+            <p>This is what we call <strong>technology today</strong>: technique detached from tradition, community, and human scale, technique that dictates social life rather than serving it. With industrialization, the political realm shrank. Decisions about how we live were replaced by the supposed inevitability of technological progress. The future became something imposed, not chosen.</p>
+            
+            <p>The Luddites resisted this, and paid for it dearly. Yet their struggle still matters. The refusal to let machines determine the shape of life reappears today in movements resisting digital surveillance, AI automation, 5G infrastructure, ecological destruction, and the expansion of data and extraction networks. Machine sabotage has again become a political act, <strong>a way to interrupt a future no one asked for</strong>.</p>
+            
+            <p>We started this project by willing to have a technocritical position towards technology. A fertile technology is a technology who set free. A convivial tool is a tool which shouldn't remove your capacity of doing, creates neither slaves or master, should enlarge your scope of individual action. Machines are itself interlocutors and we should learn how to speak with them. If they simule dialog, we should simulate respect and ethics, and treat her the way we would like her to treat her. If we happen to live now with technology, then we need to learn how to treat it like a "convive", etymologically, the one that is living with us. Escaping form inter-human weaved connection and rather going towards with braided connections between humans and machines?</p>
+            
+            
+            <h3>Why Braiding</h3>
+            <p>Braiding is polygenetic, meaning it can't be traced back to a single origin culture. Traditionally, it's a <strong>social art</strong>: braiding takes time, and that time becomes a space for connection. Elders braid while teaching, children observe and practice on one another, and in this way, designs, and relationships, are passed down through generations.</p>
+            
+            <p>Our machine draws inspiration from the maypole braiding machine, itself rooted in an old tradition: people dancing around a pole in spring, weaving patterns as a collective act of joy, fertility, and shared rhythm. What stands out is the shared responsibility, every participant is equally involved in creating the braid.</p>
+            
+            <p>Historically, braiding materials were always <strong>tied to place</strong>, drawn from the plants and animals native to the land.</p>
             
             <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center;">
-                <div style="flex: 0 0 280px;">
-                    <img src="images/weaving.jpg" alt="Weaving" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
-                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Weaving</p>
-                </div>
                 <div style="flex: 0 0 280px;">
                     <img src="images/ropemaking.jpg" alt="Rope Making" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
                     <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Rope Making</p>
                 </div>
-                <div style="flex: 0 0 280px;">
-                    <img src="images/spinning.jpg" alt="Spinning" style="width: 100%; height: 250px; object-fit: cover; border-radius: 3px; filter: grayscale(100%);">
-                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Spinning</p>
+            </div>
+            
+            <h3>Process</h3>
+            
+            <p>To better understand braiding, we organized a collective braiding event with friends in our neighborhood. We designed a maypole-inspired installation, a <strong>"parasite"</strong> structure that attached to a lamppost, allowing people to braid together in public space. The workshop consisted out of these steps:</p>
+            
+            <p style="margin-top: 20px;"><u>Learning the basics</u><br>
+            We taught three traditional Maypole dances, each forming a distinct pattern and structure:</p>
+            <ul style="margin-top: 5px; margin-bottom: 5px;">
+                <li style="margin-bottom: 2px;">Single Pleat</li>
+                <li style="margin-bottom: 2px;">Full Pleat</li>
+                <li style="margin-bottom: 2px;">The Gypsy Tent</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><u>Exploring variation</u><br>
+            We introduced a folk dance (la chapelloise) to see what pattern it might create when translated to the pole.</p>
+            
+            <p style="margin-top: 15px;"><u>Free experimentation</u><br>
+            Participants were invited to improvise. With the basics in hand, they self-organized, invented their own dance steps, and discovered what new patterns emerged.</p>
+            
+            <div style="display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+                <div style="flex: 0 0 220px;">
+                    <img src="images/Asset 8.png" alt="Maypole Dance Principles" style="width: 100%; height: 200px; object-fit: contain; border-radius: 3px;">
+                </div>
+                <div style="flex: 0 0 420px;">
+                    <img src="images/Asset 4.png" alt="Full Plait Maypole" style="width: 100%; height: 400px; object-fit: contain; border-radius: 3px;">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Full Plait Maypole</p>
+                </div>
+                <div style="flex: 0 0 320px;">
+                    <img src="images/Asset 6.png" alt="Tent Maypole" style="width: 100%; height: 300px; object-fit: contain; border-radius: 3px;">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Tent Maypole</p>
+                </div>
+                <div style="flex: 0 0 640px;">
+                    <img src="images/Asset 2.png" alt="Chappelioise" style="width: 100%; height: 600px; object-fit: contain; border-radius: 3px;">
+                    <p style="font-size: 0.8em; color: #666; margin-top: 8px; text-align: center;">Chappelioise</p>
                 </div>
             </div>
             
-            <h3>Our Process</h3>
+            <p> At <a href="https://www.corbeo.be" target="_blank" class="inline-link">Corbeo</a>, a rope factory in Belgium, the production floor is operated by few human hands only. Most steps are automated. Yet, in the rope braiding section, the <strong>human hand is still a necessity</strong>. One worker operates several machines  - winding, unwinding, braiding. Fine motor skills are required in several steps. Tying old yarns to a new one, cutting yarn from the spool, integrating the new yarn into the rope…</p>
             
-            <p><strong>Workshop:</strong> We found a link between maypole dancing and rope making. Because essentially you are making a rope (on top of a tree stem) through the dance. We tried out different forms: the tent maypole, single plait maypole, and full pleat maypole. We also practiced the Branle de l'Official, a folk dance.</p>
+            <p>An engineer also explained to us how the mechanism works and how the rope making changed over the course of three generations.</p>
             
-            <p><strong>Visit Factory:</strong> We explored the relationship between machine vs. worker, examining questions of agency. We observed the process from thread to rope. We saw how workers interact with machines—compared to other machines, workers are definitely needed for some tasks because they're so intricate.</p>
-            
-            <p><strong>Folk Dance:</strong> There are</p>
-            <ul style="margin-left: 20px; line-height: 1.8;">
-                <li>First dance: very little body contact (just holding on one finger), dance in row so you can see everyone once</li>
-                <li>Second dance: choose randomly one partner that's next to you, but not too close body contact</li>
-                <li>Third dance: ask some partner to dance with you</li>
-            </ul>
-            
-            <h3>Research Question</h3>
-            <p style="font-style: italic; padding: 20px; background: rgba(242, 110, 105, 0.1); border-radius: 3px; margin: 30px 0;">How can braiding be reimagined as both a technological and social system, where new tools and community activation make production more accessible, creative, poetic and collaborative?</p>
-            
-            <h3>Machine Mechanism</h3>
-            
+            <p> In Eindhoven, at <a href="https://www.balfolk.nl/locaties/cafe-wilhelmina/" target="_blank" class="inline-link">Café Wilhelmina</a>, we observed the system of traditional dance, with its people, patterns and rhythms. The Balfolk community comes together through a shared etiquette, a code of conduct and through each step. Some dances are more intense and energetic than others, which are slower paced. With <strong>each dance a stronger connection is made</strong>.</p>
+
+
             <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                 <tr style="background: rgba(242, 110, 105, 0.1);">
                     <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Element</th>
-                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Braiding Machine</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Braiding MACHINE</th>
                     <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Social Dance</th>
                 </tr>
                 <tr>
@@ -333,12 +394,22 @@
                 </tr>
                 <tr>
                     <td style="padding: 10px; border: 1px solid #ddd;"><strong>Interaction</strong></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">Worker responds to machine errors—relationship is responsive, not hierarchical</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Worker responds to MACHINE errors—relationship is responsive, not hierarchical</td>
                     <td style="padding: 10px; border: 1px solid #ddd;">People respond to each other—relationship is responsive, not hierarchical</td>
                 </tr>
             </table>
             
-            <h3>Function: Physical Interaction, Digital Interaction, Collaboration Effect</h3>
+            <h3>Research Question</h3>
+            <p style="font-style: italic; padding: 20px; background: rgba(242, 110, 105, 0.1); border-radius: 3px; margin: 30px 0;">How can braiding be reimagined as both a technological and social system, where new tools and community activation make production more accessible, creative, poetic and collaborative?</p>
+            
+            <h3>MACHINE Mechanism</h3>
+            
+            
+            <h3>The Website</h3>
+            <p>On our website, we present the development <a href="mindmap.html" class="inline-link">process</a> openly, following an <strong>open-source</strong> logic. Our process, how to build the machine and the <a href="index.html" class="inline-link">machine</a>'s interactive features are shared, allowing others to learn, replicate, or modify them as well as interact with each other.</p>
+            
+            <h3>How to interact with the machine</h3>
+            <p>The machine is designed for <strong>hybrid</strong> interaction. Physical and digital inputs work together: one supports and responds to the other. A code of conduct guides how people in the physical space and users online engage with the machine. Both sides influence the final result, creating a shared experience across spaces.</p>
             
             <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                 <tr style="background: rgba(242, 110, 105, 0.1);">
@@ -373,17 +444,21 @@
                 </tr>
                 <tr>
                     <td style="padding: 10px; border: 1px solid #ddd;"><strong>Feedback & Response</strong></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">See, touch, hear the machine—direct sensory experience</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">See, touch, hear the MACHINE—direct sensory experience</td>
                     <td style="padding: 10px; border: 1px solid #ddd;">View live visual data (speed, tension, sound frequency)</td>
                     <td style="padding: 10px; border: 1px solid #ddd;">Digital users interpret and respond to sensory feedback, creating continuous dialogue</td>
                 </tr>
             </table>
             
-            <h3>Website</h3>
-            <p>We want people to collaborate together across space, so the actions of on-site and online both influence each other and the outcome of the rope. Also, we want the process to be open-source, so we share all our process and how to build the machine on this website. The website should also explain our concept through its design.</p>
+            <h3>What is the outcome</h3>
+            <p>There is no fixed outcome. The aim is to create a system with enough flexibility to allow for <strong>experimentation</strong>. The structure invites users to build, test, and adapt within context. What emerges depends on the tools, people, and conditions involved—leaving space for new possibilities to be discovered during use.</p>
             
             <br>
             <p><em>A collaborative project by Marion & Jess</em></p>
+            
+            <br>
+            <p style="font-size: 0.85em; color: #666;">This project is a graduation project at the Design Academy Eindhoven</p>
+            <p style="font-size: 0.85em; color: #666;">Guidance by Jeroen van de Gruiter</p>
         </div>
     </div>
 </body>

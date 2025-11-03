@@ -243,7 +243,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow: visible;
     cursor: grab;
     padding-left: 140px;
     box-sizing: border-box;
@@ -610,7 +610,7 @@ body {
     height: 60px;
     object-fit: cover;
     border-radius: 5px;
-    filter: contrast(120%) saturate(80%) brightness(0.3);
+    filter: grayscale(100%);
     transition: filter 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
     mix-blend-mode: normal;
 }
@@ -624,7 +624,7 @@ body {
 }
 
 .image-element:hover .mindmap-image {
-    filter: contrast(120%) saturate(110%) brightness(1) sepia(0);
+    filter: grayscale(100%) brightness(1.1);
     transform: scale(1.1);
 }
 
